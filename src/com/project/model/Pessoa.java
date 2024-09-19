@@ -1,6 +1,15 @@
 package com.project.model;
 
+
 public abstract class Pessoa {
+
+    private long id;
+    private String login;
+    private long senha;
+    private String nome;
+    private int telefone;
+    private String email;
+    private String endereco; 
 
     public abstract void cadastrarPessoa();
 
