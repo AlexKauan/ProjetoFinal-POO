@@ -1,11 +1,14 @@
 package com.project.model;
 
-public class Vendedor {
+public class Vendedor extends Pessoa {
     private double salario;
     private int numeroDeVendas;
     private double totalVendido;
 
-    public Vendedor(double salario, int numeroDeVendas, double totalVendido) {
+    public Vendedor(double salario, int numeroDeVendas, double totalVendido, String id, String login, String senha,
+            String nome,
+            String telefone, String email, String endereco) {
+        super(id, login, senha, nome, telefone, email, endereco);
         this.salario = salario;
         this.numeroDeVendas = numeroDeVendas;
         this.totalVendido = totalVendido;
@@ -35,19 +38,35 @@ public class Vendedor {
         this.totalVendido = totalVendido;
     }
 
-    public void cadastrarVendidos(){
-
+    public void cadastrarVendedor() {
+        System.out.println("Cliente cadastrado: " + this.getNome());
     }
 
-    public void mostrarVendedor(){
-
+    public void mostrarVendedor() {
+        System.out.println("Dados do cliente: " + this.toString());
     }
 
-    public void listarVendedores(){
-
+    public void editarVendedor() {
+        System.out.println("Cliente editado.");
     }
 
-    public void editarVendedor(){
-        
+    public void listarVendedor() {
+        System.out.println("Lista de clientes.");
+    }
+
+    public void removerVendedor() {
+        System.out.println("Cliente removido.");
+    }
+
+    public boolean logarVendedor(String login, String senha) {
+        return this.getLogin().equals(login) && this.getSenha().equals(senha);
+    }
+
+    public int calcularNumeroDeVendas() {
+        return numeroDeVendas;
+    }
+
+    public double calcularTotalVendido() {
+        return totalVendido;
     }
 }

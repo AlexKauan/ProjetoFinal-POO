@@ -5,45 +5,52 @@ public class Cliente extends Pessoa {
     private int numeroDeCompras;
     private double totalComprado;
 
-    // Construtor padrão vazio
-    public Cliente() {
-    }
-
-    // Construtor com parâmetros
-    public Cliente(long id, String login, long senha, String nome, int telefone, String email, String endereco) {
+    public Cliente(String id, String login, String senha, String nome,
+            String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
         super(id, login, senha, nome, telefone, email, endereco);
-        this.numeroDeCompras = 0;
-        this.totalComprado = 0.0;
+        this.numeroDeCompras = numeroDeCompras;
+        this.totalComprado = totalComprado;
     }
 
-    // Métodos específicos do cliente
     public int calcularNumeroDeCompras() {
         return this.numeroDeCompras;
     }
 
-    // Métodos abstratos sobrescritos de Pessoa
-    @Override
-    public void cadastrarPessoa() {
+    public void cadastrarCliente() {
+        System.out.println("Cliente cadastrado: " + this.getNome());
+    }
+
+    public void mostrarCliente() {
+        System.out.println("Dados do cliente: " + this.toString());
+    }
+
+    public void editarCliente() {
+        System.out.println("Cliente editado.");
+    }
+
+    public void listarCliente() {
+        System.out.println("Lista de clientes.");
+    }
+
+    public void removerCliente() {
+        System.out.println("Cliente removido.");
+    }
+
+    public boolean logarCliente(String login, String senha) {
+        return this.getLogin().equals(login) && this.getSenha().equals(senha);
     }
 
     @Override
-    public void mostrarPessoa() {
-    }
-
-    @Override
-    public void editarPessoa() {
-    }
-
-    @Override
-    public void listarPessoas() {
-    }
-
-    @Override
-    public void removerPessoa() {
-    }
-
-    @Override
-    public boolean logarPessoa(String login, long senha) {
-        return false;
+    public String toString() {
+        return "Cliente{" +
+                "id='" + getId() + '\'' +
+                ", nome='" + getNome() + '\'' +
+                ", login='" + getLogin() + '\'' +
+                ", telefone='" + getTelefone() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", endereco='" + getEndereco() + '\'' +
+                ", numeroDeCompras=" + numeroDeCompras +
+                ", totalComprado=" + totalComprado +
+                '}';
     }
 }

@@ -1,17 +1,19 @@
 package com.project.model;
 
+import java.util.List;
+
 public abstract class Pessoa {
 
-    private long id;
+    private String id;
     private String login;
-    private long senha;
+    private String senha;
     private String nome;
-    private int telefone;
+    private String telefone;
     private String email;
     private String endereco;
 
-    // Construtor com parâmetros
-    public Pessoa(long id, String login, long senha, String nome, int telefone, String email, String endereco) {
+    // Construtor da classe Pessoa
+    public Pessoa(String id, String login, String senha, String nome, String telefone, String email, String endereco) {
         this.id = id;
         this.login = login;
         this.senha = senha;
@@ -21,16 +23,39 @@ public abstract class Pessoa {
         this.endereco = endereco;
     }
 
-    // Construtor padrão vazio
-    public Pessoa() {
+    // Métodos abstratos
+
+    public void mostrarPessoa() {
+        System.out.println(this.toString());
     }
 
-    // Getters e setters
-    public long getId() {
+    public void editarPessoa(String nome, String telefone, String endereco, String senha) {
+        this.setNome(nome);
+        this.setSenha(senha);
+        this.setTelefone(telefone);
+        this.setEndereco(endereco);
+    }
+
+    public void listarPessoas(List<Pessoa> pessoas) {
+        for (Pessoa pessoa : pessoas) {
+            pessoa.mostrarPessoa();
+        }
+    }
+
+    public void removerPessoa(List<Pessoa> pessoas) {
+        pessoas.remove(this); // Remove esta pessoa da lista de pessoas
+    }
+
+    public boolean logarPessoa(String login, String senha) {
+        return this.getLogin().equals(login) && this.getSenha().equals(senha);
+    }
+
+    // Getters e Setters
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,11 +67,11 @@ public abstract class Pessoa {
         this.login = login;
     }
 
-    public long getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(long senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
@@ -58,11 +83,11 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -82,16 +107,17 @@ public abstract class Pessoa {
         this.endereco = endereco;
     }
 
-    // Métodos abstratos
-    public abstract void cadastrarPessoa();
-
-    public abstract void mostrarPessoa();
-
-    public abstract void editarPessoa();
-
-    public abstract void listarPessoas();
-
-    public abstract void removerPessoa();
-
-    public abstract boolean logarPessoa(String login, long senha);
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Pessoa{");
+        sb.append("id=").append(id);
+        sb.append(", login=").append(login);
+        sb.append(", nome=").append(nome);
+        sb.append(", telefone=").append(telefone);
+        sb.append(", email=").append(email);
+        sb.append(", endereco=").append(endereco);
+        sb.append('}');
+        return sb.toString();
+    }
 }
