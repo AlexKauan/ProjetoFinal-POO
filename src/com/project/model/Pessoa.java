@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class Pessoa {
 
-    private String id;
+    private int id;
     private String login;
     private String senha;
     private String nome;
@@ -13,7 +13,7 @@ public abstract class Pessoa {
     private String endereco;
 
     // Construtor da classe Pessoa
-    public Pessoa(String id, String login, String senha, String nome, String telefone, String email, String endereco) {
+    public Pessoa(int id, String login, String senha, String nome, String telefone, String email, String endereco) {
         this.id = id;
         this.login = login;
         this.senha = senha;
@@ -30,10 +30,19 @@ public abstract class Pessoa {
     }
 
     public void editarPessoa(String nome, String telefone, String endereco, String senha) {
-        this.setNome(nome);
-        this.setSenha(senha);
-        this.setTelefone(telefone);
-        this.setEndereco(endereco);
+        if (nome != null && !nome.isEmpty()) {
+            this.setNome(nome);
+        }
+        if (senha != null && !senha.isEmpty()) {
+            this.setSenha(senha);
+        }
+        if (telefone != null && !telefone.isEmpty()) {
+            this.setTelefone(telefone);
+        }
+        if (endereco != null && !endereco.isEmpty()) {
+            this.setEndereco(endereco);
+        }
+
     }
 
     public void listarPessoas(List<Pessoa> pessoas) {
@@ -51,11 +60,11 @@ public abstract class Pessoa {
     }
 
     // Getters e Setters
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

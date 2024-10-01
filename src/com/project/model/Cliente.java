@@ -1,11 +1,13 @@
 package com.project.model;
 
+import java.util.List;
+
 public class Cliente extends Pessoa {
 
     private int numeroDeCompras;
     private double totalComprado;
 
-    public Cliente(String id, String login, String senha, String nome,
+    public Cliente(int id, String login, String senha, String nome,
             String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
         super(id, login, senha, nome, telefone, email, endereco);
         this.numeroDeCompras = numeroDeCompras;
@@ -16,24 +18,22 @@ public class Cliente extends Pessoa {
         return this.numeroDeCompras;
     }
 
-    public void cadastrarCliente() {
-        System.out.println("Cliente cadastrado: " + this.getNome());
-    }
-
     public void mostrarCliente() {
         System.out.println("Dados do cliente: " + this.toString());
     }
 
-    public void editarCliente() {
-        System.out.println("Cliente editado.");
+    public void editarCliente(String nome, String endereco, String telefone, String senha) {
+        super.editarPessoa(nome, telefone, endereco, senha);
     }
 
-    public void listarCliente() {
-        System.out.println("Lista de clientes.");
+    public void listarClientes(List<Cliente> clientes) {
+        for (Cliente cliente : clientes) {
+            cliente.mostrarPessoa();
+        }
     }
 
-    public void removerCliente() {
-        System.out.println("Cliente removido.");
+    public void removerCliente(List<Cliente> clientes) {
+        clientes.remove(this); // Remove esta pessoa da lista de pessoas
     }
 
     public boolean logarCliente(String login, String senha) {
