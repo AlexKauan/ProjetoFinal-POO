@@ -33,10 +33,19 @@ public abstract class Pessoa {
     }
 
     public void editarPessoa(String nome, String telefone, String endereco, String senha) {
-        this.setNome(nome);
-        this.setSenha(senha);
-        this.setTelefone(telefone);
-        this.setEndereco(endereco);
+        if (nome != null && !nome.isEmpty()) {
+            this.setNome(nome);
+        }
+        if (senha != null && !senha.isEmpty()) {
+            this.setSenha(senha);
+        }
+        if (telefone != null && !telefone.isEmpty()) {
+            this.setTelefone(telefone);
+        }
+        if (endereco != null && !endereco.isEmpty()) {
+            this.setEndereco(endereco);
+        }
+
     }
 
     public void listarPessoas(List<Pessoa> pessoas) {
