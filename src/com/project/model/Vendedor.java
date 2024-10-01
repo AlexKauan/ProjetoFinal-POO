@@ -5,7 +5,11 @@ public class Vendedor extends Pessoa {
     private int numeroDeVendas;
     private double totalVendido;
 
-    public Vendedor(double salario, int numeroDeVendas, double totalVendido, String id, String login, String senha,
+    public Vendedor() {
+        super();
+    }
+
+    public Vendedor(double salario, int numeroDeVendas, double totalVendido, int id, String login, String senha,
             String nome,
             String telefone, String email, String endereco) {
         super(id, login, senha, nome, telefone, email, endereco);
