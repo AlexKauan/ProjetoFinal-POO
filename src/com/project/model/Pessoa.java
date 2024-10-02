@@ -1,5 +1,6 @@
 package com.project.model;
 
+import com.project.util.Validacao;
 import java.util.List;
 
 public abstract class Pessoa {
@@ -97,7 +98,11 @@ public abstract class Pessoa {
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        if (Validacao.validarTelefone(telefone)) {
+            this.telefone = telefone;
+        } else {
+            throw new IllegalArgumentException("Telefone inválido.");
+        }
     }
 
     public String getEmail() {
@@ -105,7 +110,11 @@ public abstract class Pessoa {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (Validacao.validarEmail(email)) {
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException("E-mail inválido.");
+        }
     }
 
     public String getEndereco() {
