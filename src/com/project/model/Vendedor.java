@@ -5,7 +5,7 @@ public class Vendedor extends Pessoa {
     private int numeroDeVendas;
     private double totalVendido;
 
-    public Vendedor(double salario, int numeroDeVendas, double totalVendido, String id, String login, String senha,
+    public Vendedor(double salario, int numeroDeVendas, double totalVendido, int id, String login, String senha,
             String nome,
             String telefone, String email, String endereco) {
         super(id, login, senha, nome, telefone, email, endereco);
@@ -38,16 +38,13 @@ public class Vendedor extends Pessoa {
         this.totalVendido = totalVendido;
     }
 
-    public void cadastrarVendedor() {
-        System.out.println("Cliente cadastrado: " + this.getNome());
-    }
-
     public void mostrarVendedor() {
         System.out.println("Dados do cliente: " + this.toString());
     }
 
-    public void editarVendedor() {
-        System.out.println("Cliente editado.");
+    public void editarVendedor(String nome, String endereco, String telefone, String senha) {
+        super.editarPessoa(nome, telefone, endereco, senha);
+
     }
 
     public void listarVendedor() {
@@ -69,4 +66,5 @@ public class Vendedor extends Pessoa {
     public double calcularTotalVendido() {
         return totalVendido;
     }
+
 }
