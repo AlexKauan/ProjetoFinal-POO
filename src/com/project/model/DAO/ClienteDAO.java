@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 
 import java.util.ArrayList;
 
-import com.project.model.Cliente;
+import com.project.model.entidades.Cliente;
 
 public class ClienteDAO{
 

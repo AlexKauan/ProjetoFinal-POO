@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 
 import java.util.ArrayList;
 
-import com.project.model.Vendedor;
+import com.project.model.entidades.Vendedor;
 
 
 public class VendedorDAO {

@@ -1,4 +1,4 @@
-package com.project.model;
+package com.project.model.entidades;
 
 import com.project.util.Validacao;
 import java.util.List;
