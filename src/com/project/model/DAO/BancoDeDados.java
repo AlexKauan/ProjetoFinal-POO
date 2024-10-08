@@ -9,9 +9,9 @@ import java.sql.Statement;
 
 public class BancoDeDados {
     private static String driver = "org.postgresql.Driver";
-    private static String url = "jdbc:postgresql://localhost:5432/POO"; // colocar a porta do banco e nome que eu coloquei no postgres
+    private static String url = "jdbc:postgresql://localhost:5432/Epoo"; // colocar a porta do banco e nome que eu coloquei no postgres
     private static String user = "postgres";
-    private static String password = "postgre";
+    private static String password = "postgres";
 
     private static Connection conn;
 
