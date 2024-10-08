@@ -1,4 +1,4 @@
-package com.project.model;
+package com.project.model.entidades;
 
 public enum Status {
     EM_ABERTO,
