@@ -1,5 +1,7 @@
 package com.project.model;
 
+import java.util.List;
+
 public class Vendedor extends Pessoa {
     private double salario;
     private int numeroDeVendas;
@@ -42,28 +44,26 @@ public class Vendedor extends Pessoa {
         this.totalVendido = totalVendido;
     }
 
-    public void cadastrarVendedor() {
-        System.out.println("Cliente cadastrado: " + this.getNome());
-    }
-
     public void mostrarVendedor() {
-        System.out.println("Dados do cliente: " + this.toString());
+        System.out.println(this.toString());
     }
 
-    public void editarVendedor() {
-        System.out.println("Cliente editado.");
+    public void editarVendedor(String nome, String endereco, String telefone, String senha) {
+        super.editarPessoa(nome, telefone, endereco, senha);
     }
 
-    public void listarVendedor() {
-        System.out.println("Lista de clientes.");
+    public void listarVendedor(List<Vendedor> vendedores) {
+        for (Vendedor vendedor : vendedores) {
+            vendedor.mostrarPessoa();
+        }
     }
 
-    public void removerVendedor() {
-        System.out.println("Cliente removido.");
+    public void removerVendedor(List<Vendedor> vendedores) {
+        vendedores.remove(this);
     }
 
     public boolean logarVendedor(String login, String senha) {
-        return this.getLogin().equals(login) && this.getSenha().equals(senha);
+        return super.logarPessoa(login, senha);
     }
 
     public int calcularNumeroDeVendas() {
@@ -73,4 +73,5 @@ public class Vendedor extends Pessoa {
     public double calcularTotalVendido() {
         return totalVendido;
     }
+
 }
