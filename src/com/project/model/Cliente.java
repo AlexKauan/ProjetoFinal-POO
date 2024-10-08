@@ -19,7 +19,7 @@ public class Cliente extends Pessoa {
     }
 
     public void mostrarCliente() {
-        System.out.println("Dados do cliente: " + this.toString());
+        System.out.println(this.toString());
     }
 
     public void editarCliente(String nome, String endereco, String telefone, String senha) {
@@ -37,7 +37,7 @@ public class Cliente extends Pessoa {
     }
 
     public boolean logarCliente(String login, String senha) {
-        return this.getLogin().equals(login) && this.getSenha().equals(senha);
+        return super.logarPessoa(login, senha); 
     }
 
     @Override
