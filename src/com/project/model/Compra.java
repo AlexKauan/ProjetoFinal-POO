@@ -1,5 +1,6 @@
 package com.project.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,13 +8,13 @@ public class Compra {
     private int idCompra;
     private Date date;
     private Status statusCompra;
-    private List<Item> itens;
+    private List<ItemDeCompra> itens;
 
-    public Compra(int idCompra, Date data, Status statusCompra, List<Item> itens) {
+    public Compra(int idCompra, Date data, Status statusCompra) {
         this.idCompra = idCompra;
         this.date = data;
         this.statusCompra = statusCompra;
-        this.itens = itens;
+        this.itens = new ArrayList<>();
     }
 
      // Getters e Setters
@@ -41,11 +42,11 @@ public class Compra {
         this.statusCompra = statusCompra;
     }
 
-    public List<Item> getItens() {
+    public List<ItemDeCompra> getItens() {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
+    public void setItens(List<ItemDeCompra> itens) {
         this.itens = itens;
     }
 }
