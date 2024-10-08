@@ -33,6 +33,7 @@ public class BancoDeDados {
 
     public static void iniciarConexao() throws SQLException {
         VendedorDAO.conn = getConnection();
+        ClienteDAO.conn = getConnection();
         /*LoteDAO.conn = getConnection();
         EstoqueDAO.conn = getConnection();
         FuncionarioDAO.conn = getConnection();
