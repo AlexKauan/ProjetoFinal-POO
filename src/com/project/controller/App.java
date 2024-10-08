@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
-        Cliente pessoa1 = new Cliente("null", "null", "null", "Alex", "null", "null", "null", 12, 1.0);
+        Cliente pessoa1 = new Cliente(1, "null", "null", "Alex", "null", "null", "null", 12, 1.0);
         System.out.println(pessoa1);
         ArrayList<Cliente> clientes = new ArrayList<>();
 

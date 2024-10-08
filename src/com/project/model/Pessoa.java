@@ -12,6 +12,7 @@ public abstract class Pessoa {
     private String telefone;
     private String email;
     private String endereco;
+    private static Pessoa pessoaLogada;
 
     // Construtor da classe Pessoa
     public Pessoa(int id, String login, String senha, String nome, String telefone, String email, String endereco) {
@@ -57,7 +58,11 @@ public abstract class Pessoa {
     }
 
     public boolean logarPessoa(String login, String senha) {
-        return this.getLogin().equals(login) && this.getSenha().equals(senha);
+        if (this.getLogin().equals(login) && this.getSenha().equals(senha)) {
+            pessoaLogada = this;
+            return true;
+        }
+        return false;
     }
 
     // Getters e Setters
@@ -125,6 +130,10 @@ public abstract class Pessoa {
         this.endereco = endereco;
     }
 
+    public static Pessoa getPessoaLogada() {
+        return pessoaLogada;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -137,5 +146,5 @@ public abstract class Pessoa {
         sb.append(", endereco=").append(endereco);
         sb.append('}');
         return sb.toString();
-    }
+}
 }
