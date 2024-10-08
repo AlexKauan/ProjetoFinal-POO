@@ -14,6 +14,9 @@ public abstract class Pessoa {
     private String endereco;
     private static Pessoa pessoaLogada;
 
+    // Construtor padrão
+    public Pessoa() {}
+
     // Construtor da classe Pessoa
     public Pessoa(int id, String login, String senha, String nome, String telefone, String email, String endereco) {
         this.id = id;
