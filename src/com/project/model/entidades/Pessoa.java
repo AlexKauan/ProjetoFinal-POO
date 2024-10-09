@@ -106,11 +106,11 @@ public abstract class Pessoa {
     }
 
     public void setTelefone(String telefone) {
-        if (Validacao.validarTelefone(telefone)) {
+        // if (Validacao.validarTelefone(telefone)) {
             this.telefone = telefone;
-        } else {
-            throw new IllegalArgumentException("Telefone inválido.");
-        }
+        // } else {
+        //     throw new IllegalArgumentException("Telefone inválido.");
+        // }
     }
 
     public String getEmail() {

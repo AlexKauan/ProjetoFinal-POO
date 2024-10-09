@@ -37,7 +37,7 @@ public class Cliente extends Pessoa {
     }
 
     public void removerCliente(List<Cliente> clientes) {
-        clientes.remove(this); // Remove esta pessoa da lista de pessoas
+        clientes.remove(this); 
     }
 
     public boolean logarCliente(String login, String senha) {

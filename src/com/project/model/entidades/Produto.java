@@ -2,18 +2,21 @@ package com.project.model.entidades;
 
 public class Produto {
 
+    private int idProduto;
     private long codigoDoProduto;
     private String descricao;
     private double precoUnitario;
     private int quantidadeDisponivel;
 
+    // Construtor
     public Produto(long codigoDoProduto, String descricao, double precoUnitario, int quantidadeDisponivel) {
         this.codigoDoProduto = codigoDoProduto;
-        this.descricao = descricao;
-        this.precoUnitario = precoUnitario;
+        this.setDescricao(descricao);
+        this.setPrecoUnitario(precoUnitario);
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
+    // Getters e Setters
     public long getCodigoDoProduto() {
         return codigoDoProduto;
     }
@@ -52,28 +55,6 @@ public class Produto {
 
     public void setQuantidadeDisponivel(int quantidadeDisponivel) {
         this.quantidadeDisponivel = quantidadeDisponivel;
-    }
-
-    public void adicionarEstoque(int quantidade) {
-        if (quantidade > 0) {
-            this.quantidadeDisponivel += quantidade;
-        }
-    }
-
-    public boolean removerEstoque(int quantidade) {
-        if (quantidade > 0 && quantidade <= this.quantidadeDisponivel) {
-            this.quantidadeDisponivel -= quantidade;
-            return true;
-        }
-        return false;
-    }
-
-    public double calcularValorTotalEstoque() {
-        return this.precoUnitario * this.quantidadeDisponivel;
-    }
-
-    public boolean isDisponivel() {
-        return this.quantidadeDisponivel > 0;
     }
 
     @Override
