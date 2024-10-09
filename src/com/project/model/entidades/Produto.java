@@ -46,4 +46,29 @@ public class Produto {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
+    public void adicionarEstoque(int quantidade) {
+        if (quantidade > 0) {
+            this.quantidadeDisponivel += quantidade;
+        }
+    }
+
+    public void removerEstoque(int quantidade) {
+        if (quantidade > 0) {
+            this.quantidadeDisponivel -= quantidade;
+        }
+    }
+
+    public double calcularValorTotalEstoque() {
+        return this.precoUnitario * this.quantidadeDisponivel;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "codigoProduto=" + codigoDoProduto +
+                ", descricao='" + descricao + '\'' +
+                ", precoUnitario=" + precoUnitario +
+                ", quantidadeDisponivel=" + quantidadeDisponivel +
+                '}';
+    }
 }
