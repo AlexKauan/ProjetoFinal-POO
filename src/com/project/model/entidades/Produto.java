@@ -52,10 +52,12 @@ public class Produto {
         }
     }
 
-    public void removerEstoque(int quantidade) {
-        if (quantidade > 0) {
+    public boolean removerEstoque(int quantidade) {
+        if (quantidade > 0 && quantidade <= this.quantidadeDisponivel) {
             this.quantidadeDisponivel -= quantidade;
+            return true;
         }
+        return false;
     }
 
     public double calcularValorTotalEstoque() {
