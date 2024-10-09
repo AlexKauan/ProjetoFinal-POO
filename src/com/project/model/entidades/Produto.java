@@ -35,7 +35,11 @@ public class Produto {
     }
 
     public void setPrecoUnitario(double precoUnitario) {
-        this.precoUnitario = precoUnitario;
+        if (precoUnitario >= 0) {
+            this.precoUnitario = precoUnitario;
+        } else {
+            throw new IllegalArgumentException("O preço unitário não pode ser negativo.");
+        }
     }
 
     public int getQuantidadeDisponivel() {
