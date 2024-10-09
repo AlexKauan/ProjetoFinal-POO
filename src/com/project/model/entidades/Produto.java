@@ -72,6 +72,10 @@ public class Produto {
         return this.precoUnitario * this.quantidadeDisponivel;
     }
 
+    public boolean isDisponivel() {
+        return this.quantidadeDisponivel > 0;
+    }
+
     @Override
     public String toString() {
         return "Produto{" +
