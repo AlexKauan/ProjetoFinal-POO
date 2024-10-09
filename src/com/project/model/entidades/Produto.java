@@ -27,7 +27,11 @@ public class Produto {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        if (descricao != null && !descricao.trim().isEmpty()) {
+            this.descricao = descricao;
+        } else {
+            throw new IllegalArgumentException("A descrição não pode ser vazia.");
+        }
     }
 
     public double getPrecoUnitario() {
