@@ -8,8 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.util.ArrayList;
-
-import com.project.model.Produto;
+import com.project.model.entidades.ItemDeCompra;
 
 public class ItemDeCompraDAO{
 
@@ -17,16 +16,16 @@ public class ItemDeCompraDAO{
 
     public static ItemDeCompra pegar(int id) throws SQLException {
         ItemDeCompra item = null;
-        String sql = "SELECT idItemCompra, quantidadeComprada, precoDoItemDeCompra, from itemDeCompra where idItemCompra = ?";
+        String sql = "SELECT id_Item_Compra, quantidadeComprada, precoDoItemDeCompra from itemDeCompra where id_Item_Compra = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, id);
         
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             item = new ItemDeCompra();
-            item.setInt(rs.getInt("idItemCompra"));
-            item.setInt(rs.getString("quantidadeComprada"));       
-            item.setString(rs.getString("precoDoItemDeCompra"));    
+            item.setId_item_compra(rs.getInt("id_Item_Compra")); 
+            item.setQuantidadeComprada(rs.getInt("quantidadeComprada"));       
+            item.setPrecoDoItemDeCompra(rs.getDouble("precoDoItemDeCompra"));    
             
         }
         BancoDeDados.fecharResultSet(rs);
@@ -37,41 +36,56 @@ public class ItemDeCompraDAO{
     public static ArrayList<ItemDeCompra> pegarTodos() throws SQLException {
         ArrayList<ItemDeCompra> itens = new ArrayList<ItemDeCompra>();
         ItemDeCompra item = null;
-        String sql = "SELECT idItemCompra, quantidadeComprada, precoDoItemDeCompra, from item";
+        String sql = "SELECT id_Item_Compra, quantidadeComprada, precoDoItemDeCompra from itemDeCompra";
         PreparedStatement ps = conn.prepareStatement(sql);
         
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             item = new ItemDeCompra();
-            item.setInt(rs.getInt("idItemCompra"));
-            item.setInt(rs.getString("quantidadeComprada"));       
-            item.setString(rs.getString("precoDoItemDeCompra"));    
+            item.setId_item_compra(rs.getInt("id_Item_Compra"));
+            item.setQuantidadeComprada(rs.getInt("quantidadeComprada"));       
+            item.setPrecoDoItemDeCompra(rs.getDouble("precoDoItemDeCompra"));      
             itens.add(item);
         }
         BancoDeDados.fecharResultSet(rs);
         BancoDeDados.fecharPreparedStatement(ps);
-        return item;
+        return itens;
     }
 
     public static int inserir(ItemDeCompra item) throws SQLException {
-        String sql = "INSERT INTO item (idItemCompra, quantidadeComprada, precoDoItemDeCompra) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO itemDeCompra (quantidadeComprada, precoDoItemDeCompra) VALUES (?, ?)";
 
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, item.getidItemCompra());
-        ps.setString(2, item.getQuantidadeComprada());
-        ps.setDouble(3, item.getPrecoDoItemDeCompra());
+        ps.setInt(1, item.getQuantidadeComprada());
+        ps.setDouble(2, item.getPrecoDoItemDeCompra());
 
         int resultado = ps.executeUpdate();
         BancoDeDados.fecharPreparedStatement(ps);
         return resultado;
     }
 
-    public static int atualizar(ItemDeCompra item) throws SQLException {
-        String sql = "UPDATE item set quantidadeComprada = ?, precoDoItemDeCompra = ? WHERE idItemCompra = ?";
+    public static void get_id_cliente(ItemDeCompra item) throws SQLException{
+        String sql = "SELECT id_Item_Compra from itemDeCompra WHERE quantidadeComprada = ? and precoDoItemDeCompra = ?";
+        
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, item.getidItemCompra());
-        ps.setString(2, item.getQuantidadeComprada());
-        ps.setDouble(3, item.getPrecoDoItemDeCompra());
+        ps.setInt(1, item.getQuantidadeComprada());
+        ps.setDouble(2, item.getPrecoDoItemDeCompra());
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            item.setId_item_compra(rs.getInt("id_Item_Compra"));
+        }
+        BancoDeDados.fecharResultSet(rs);
+        BancoDeDados.fecharPreparedStatement(ps);
+
+    }
+
+    public static int atualizar(ItemDeCompra item) throws SQLException {
+        String sql = "UPDATE itemDeCompra set quantidadeComprada = ?, precoDoItemDeCompra = ? WHERE id_Item_Compra = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, item.getQuantidadeComprada());
+        ps.setDouble(2, item.getPrecoDoItemDeCompra());
         
 
         int resultado = ps.executeUpdate();
@@ -80,16 +94,16 @@ public class ItemDeCompraDAO{
     }
 
     public static void salvar(ItemDeCompra item) throws SQLException {
-        if (item.getId() != 0)
+        if (item.getId_item_compra() != 0)
             atualizar(item);
         else
             inserir(item);
     }
 
     public static int deletar(ItemDeCompra item) throws SQLException {
-        String sql = "DELETE FROM item WHERE idItemCompra = ?";
+        String sql = "DELETE FROM itemDeCompra WHERE id_Item_Compra = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, item.getId());
+        ps.setInt(1, item.getId_item_compra());
 
         int resultado = ps.executeUpdate();
 

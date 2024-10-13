@@ -14,8 +14,17 @@ public abstract class Pessoa {
     private String endereco;
     private static Pessoa pessoaLogada;
 
-    // Construtor padrão
-    public Pessoa() {}
+    public Pessoa(){}
+
+    // Construtor da classe Pessoa
+    public Pessoa(String login, String senha, String nome, String telefone, String email, String endereco) {
+        this.login = login;
+        this.senha = senha;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.endereco = endereco;
+    }
 
     // Construtor da classe Pessoa
     public Pessoa(int id, String login, String senha, String nome, String telefone, String email, String endereco) {
@@ -106,11 +115,12 @@ public abstract class Pessoa {
     }
 
     public void setTelefone(String telefone) {
-        if (Validacao.validarTelefone(telefone)) {
+        /*if (Validacao.validarTelefone(telefone)) {
             this.telefone = telefone;
         } else {
             throw new IllegalArgumentException("Telefone inválido.");
-        }
+        }*/
+        this.telefone = telefone;
     }
 
     public String getEmail() {

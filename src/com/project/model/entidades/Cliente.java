@@ -8,12 +8,19 @@ public class Cliente extends Pessoa {
     private double totalComprado;
 
     public Cliente() {
-        super();
+       super();
     }
 
     public Cliente(int id, String login, String senha, String nome,
-            String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
+        String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
         super(id, login, senha, nome, telefone, email, endereco);
+        this.numeroDeCompras = numeroDeCompras;
+        this.totalComprado = totalComprado;
+    }
+
+    public Cliente(String login, String senha, String nome,
+        String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
+        super(login, senha, nome, telefone, email, endereco);
         this.numeroDeCompras = numeroDeCompras;
         this.totalComprado = totalComprado;
     }
@@ -37,7 +44,7 @@ public class Cliente extends Pessoa {
     }
 
     public void removerCliente(List<Cliente> clientes) {
-        clientes.remove(this); // Remove esta pessoa da lista de pessoas
+        clientes.remove(this); 
     }
 
     public boolean logarCliente(String login, String senha) {

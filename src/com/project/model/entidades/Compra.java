@@ -1,23 +1,35 @@
 package com.project.model.entidades;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class Compra {
+public class Compra{
     private int idCompra;
-    private Date date;
-    private Status statusCompra;
+    private Cliente cliente;
+    private String date;
+    private String statusCompra;
     private List<ItemDeCompra> itens;
 
-    public Compra(int idCompra, Date data, Status statusCompra) {
+    public Compra(){}
+
+
+    public Compra(int idCompra, Cliente cliente, String date, String statusCompra) {
         this.idCompra = idCompra;
-        this.date = data;
+        this.cliente = cliente;
+        this.date = date;
         this.statusCompra = statusCompra;
         this.itens = new ArrayList<>();
     }
 
-     // Getters e Setters
+    public Compra(Cliente cliente, String date, String statusCompra) {
+        this.cliente = cliente;
+        this.date = date;
+        this.statusCompra = statusCompra;
+        this.itens = new ArrayList<>();
+    }
+
+
+    // Getters e Setters
     public int getIdCompra() {
         return idCompra;
     }
@@ -26,19 +38,19 @@ public class Compra {
         this.idCompra = idCompra;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Status getStatusCompra() {
+    public String getStatusCompra() {
         return statusCompra;
     }
 
-    public void setStatusCompra(Status statusCompra) {
+    public void setStatusCompra(String statusCompra) {
         this.statusCompra = statusCompra;
     }
 
@@ -48,6 +60,16 @@ public class Compra {
 
     public void setItens(List<ItemDeCompra> itens) {
         this.itens = itens;
+    }
+
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }
 
