@@ -13,8 +13,8 @@ public class Produto {
     public Produto(int idProduto, int codigoDoProduto, String descricao, double precoUnitario, int quantidadeDisponivel) {
         this.idProduto = idProduto;
         this.codigoDoProduto = codigoDoProduto;
-        this.descricao = descricao;
-        this.precoUnitario = precoUnitario;
+        this.setDescricao(descricao);
+        this.setPrecoUnitario(precoUnitario);
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
@@ -38,7 +38,11 @@ public class Produto {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        if (descricao != null && !descricao.trim().isEmpty()) {
+            this.descricao = descricao;
+        } else {
+            throw new IllegalArgumentException("A descrição não pode ser vazia.");
+        }
     }
 
     public double getPrecoUnitario() {
@@ -46,7 +50,11 @@ public class Produto {
     }
 
     public void setPrecoUnitario(double precoUnitario) {
-        this.precoUnitario = precoUnitario;
+        if (precoUnitario >= 0) {
+            this.precoUnitario = precoUnitario;
+        } else {
+            throw new IllegalArgumentException("O preço unitário não pode ser negativo.");
+        }
     }
 
     public int getQuantidadeDisponivel() {

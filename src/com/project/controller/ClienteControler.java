@@ -69,7 +69,6 @@ public class ClienteControler {
             ClienteDAO.salvar(this.cliente);
             System.out.println("Cliente Salvo Com sucesso!!!");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             System.out.println("Cliente Não Salvo!!!");
         }
@@ -80,7 +79,6 @@ public class ClienteControler {
             ClienteDAO.deletar(this.cliente);
             System.out.println("Cliente Deletado Com sucesso!!!");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             System.out.println("Cliente Não Deletado!!!");
         }

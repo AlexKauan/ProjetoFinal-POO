@@ -4,7 +4,6 @@ import com.project.model.DAO.BancoDeDados;
 import com.project.model.DAO.ClienteDAO;
 import com.project.model.entidades.Cliente;
 import com.project.view.ClienteView;
-
 import java.util.ArrayList;
 
 public class App {
