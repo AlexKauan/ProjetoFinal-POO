@@ -15,14 +15,12 @@ public class ClienteControler {
         this.clienteView = clienteView;
     }
 
-    public void atualizariId(int novoId) {
+    public void atualizariId(int novoId, String novoNome) {
         cliente.setId(novoId);
         System.out.println("Id atualizado com sucesso!");
-    }
 
         cliente.setNome(novoNome);
         System.out.println("Nome atualizado com sucesso!");
-    }
 
         System.out.println("Login atualizado com sucesso!");
     }
@@ -100,3 +98,4 @@ public class ClienteControler {
         this.clienteView = clienteView;
     }
 }
+
