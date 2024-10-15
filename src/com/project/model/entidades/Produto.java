@@ -1,27 +1,35 @@
 package com.project.model.entidades;
 
 public class Produto {
-
+    
     private int idProduto;
-    private long codigoDoProduto;
+    private int codigoDoProduto;
     private String descricao;
     private double precoUnitario;
     private int quantidadeDisponivel;
 
-    // Construtor
-    public Produto(long codigoDoProduto, String descricao, double precoUnitario, int quantidadeDisponivel) {
+    public Produto(){}
+
+    public Produto(int idProduto, int codigoDoProduto, String descricao, double precoUnitario, int quantidadeDisponivel) {
+        this.idProduto = idProduto;
         this.codigoDoProduto = codigoDoProduto;
         this.setDescricao(descricao);
         this.setPrecoUnitario(precoUnitario);
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
-    // Getters e Setters
-    public long getCodigoDoProduto() {
+    public Produto(int codigoDoProduto, String descricao, double precoUnitario, int quantidadeDisponivel) {
+        this.codigoDoProduto = codigoDoProduto;
+        this.setDescricao(descricao);
+        this.setPrecoUnitario(precoUnitario);
+        this.quantidadeDisponivel = quantidadeDisponivel;
+    }
+
+    public int getCodigoDoProduto() {
         return codigoDoProduto;
     }
 
-    public void setCodigoDoProduto(long codigoDoProduto) {
+    public void setCodigoDoProduto(int codigoDoProduto) {
         this.codigoDoProduto = codigoDoProduto;
     }
 
@@ -57,13 +65,25 @@ public class Produto {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
     @Override
     public String toString() {
         return "Produto{" +
-                "codigoProduto=" + codigoDoProduto +
-                ", descricao='" + descricao + '\'' +
-                ", precoUnitario=" + precoUnitario +
-                ", quantidadeDisponivel=" + quantidadeDisponivel +
+                "id='" + getIdProduto() + '\'' +
+                ",Codigo do Produto='" + getCodigoDoProduto() + '\'' +
+                ",Descricao='" + getDescricao() + '\'' +
+                ", Preco Unitario='" + getPrecoUnitario() + '\'' +
+                ", Quantidade Disponivel='" + getQuantidadeDisponivel() + '\'' +
                 '}';
     }
+
+    
+
 }

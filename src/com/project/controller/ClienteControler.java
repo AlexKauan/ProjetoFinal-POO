@@ -1,10 +1,12 @@
 package com.project.controller;
 
+import com.project.model.DAO.ClienteDAO;
 import com.project.model.entidades.Cliente;
 import com.project.view.ClienteView;
+import java.sql.SQLException;
 
 public class ClienteControler {
-  private Cliente cliente;
+    private Cliente cliente;
     private ClienteView clienteView;
 
     // Construtor
@@ -13,9 +15,19 @@ public class ClienteControler {
         this.clienteView = clienteView;
     }
 
-    public void atualizarNome(String novoNome) {
+    public void atualizariId(int novoId, String novoNome) {
+        cliente.setId(novoId);
+        System.out.println("Id atualizado com sucesso!");
+
         cliente.setNome(novoNome);
         System.out.println("Nome atualizado com sucesso!");
+
+        System.out.println("Login atualizado com sucesso!");
+    }
+
+    public void atualizarSenha(String novoSenha) {
+        cliente.setSenha(novoSenha);
+        System.out.println("Senha atualizado com sucesso!");
     }
 
     public void atualizarTelefone(String novoTelefone) {
@@ -44,8 +56,29 @@ public class ClienteControler {
     }
 
     public void exibirInformacoes() {
-        clienteView.printInformacoes(cliente);
+        clienteView.printInformacoes(this.cliente);
     }
+
+    public void salvar(){
+        try {
+            ClienteDAO.salvar(this.cliente);
+            System.out.println("Cliente Salvo Com sucesso!!!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Cliente Não Salvo!!!");
+        }
+    }
+
+    public void deletar(){
+        try {
+            ClienteDAO.deletar(this.cliente);
+            System.out.println("Cliente Deletado Com sucesso!!!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Cliente Não Deletado!!!");
+        }
+    }
+
 
     // Getters e Setters para Cliente e ClienteView, caso seja necessário
 
@@ -65,3 +98,4 @@ public class ClienteControler {
         this.clienteView = clienteView;
     }
 }
+

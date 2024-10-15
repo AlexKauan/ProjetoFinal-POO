@@ -6,6 +6,9 @@ create table vendedor(
 	telefone varchar(50),
 	email varchar(50),
 	endereco varchar(50),
+	salario numeric(50,2),
+	numeroDeVendas int,
+	totalVendido (50,2),
 	primary key (id_vendedor)
 );
 
@@ -17,6 +20,8 @@ create table cliente(
 	telefone varchar(50),
 	email varchar(50),
 	endereco varchar(50),
+	numero_de_compras int,
+	totalcomprado numeric(50,2),
 	primary key (id_cliente)
 );
 

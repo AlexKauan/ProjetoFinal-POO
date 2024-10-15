@@ -12,9 +12,16 @@ public class Vendedor extends Pessoa {
     }
 
     public Vendedor(double salario, int numeroDeVendas, double totalVendido, int id, String login, String senha,
-            String nome,
-            String telefone, String email, String endereco) {
+            String nome, String telefone, String email, String endereco) {
         super(id, login, senha, nome, telefone, email, endereco);
+        this.salario = salario;
+        this.numeroDeVendas = numeroDeVendas;
+        this.totalVendido = totalVendido;
+    }
+
+    public Vendedor(double salario, int numeroDeVendas, double totalVendido, String login, String senha,
+        String nome,String telefone, String email, String endereco) {
+        super(login, senha, nome, telefone, email, endereco);
         this.salario = salario;
         this.numeroDeVendas = numeroDeVendas;
         this.totalVendido = totalVendido;
@@ -73,5 +80,22 @@ public class Vendedor extends Pessoa {
     public double calcularTotalVendido() {
         return totalVendido;
     }
+
+    @Override
+    public String toString() {
+        return "Vendedor{" +
+                "id='" + getId() + '\'' +
+                ", nome='" + getNome() + '\'' +
+                ", login='" + getLogin() + '\'' +
+                ", telefone='" + getTelefone() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", endereco='" + getEndereco() + '\'' +
+                ", salario=" + salario +
+                ", numeroDeVendas=" + numeroDeVendas +
+                ", totalVendido=" + totalVendido +
+                '}';
+    }
+
+    
 
 }
