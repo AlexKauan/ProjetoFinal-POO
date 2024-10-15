@@ -20,13 +20,10 @@ public class ClienteControler {
         System.out.println("Id atualizado com sucesso!");
     }
 
-    public void atualizarNome(String novoNome) {
         cliente.setNome(novoNome);
         System.out.println("Nome atualizado com sucesso!");
     }
 
-    public void atualizarLogin(String novoLogin) {
-        cliente.setLogin(novoLogin);
         System.out.println("Login atualizado com sucesso!");
     }
 

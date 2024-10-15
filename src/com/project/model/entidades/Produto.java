@@ -20,8 +20,8 @@ public class Produto {
 
     public Produto(int codigoDoProduto, String descricao, double precoUnitario, int quantidadeDisponivel) {
         this.codigoDoProduto = codigoDoProduto;
-        this.descricao = descricao;
-        this.precoUnitario = precoUnitario;
+        this.setDescricao(descricao);
+        this.setPrecoUnitario(precoUnitario);
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
