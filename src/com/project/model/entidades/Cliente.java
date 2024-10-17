@@ -1,7 +1,5 @@
 package com.project.model.entidades;
 
-import java.util.List;
-
 public class Cliente extends Pessoa {
 
     private int numeroDeCompras;
@@ -23,32 +21,6 @@ public class Cliente extends Pessoa {
         super(login, senha, nome, telefone, email, endereco);
         this.numeroDeCompras = numeroDeCompras;
         this.totalComprado = totalComprado;
-    }
-
-    public int calcularNumeroDeCompras() {
-        return this.numeroDeCompras;
-    }
-
-    public void mostrarCliente() {
-        System.out.println(this.toString());
-    }
-
-    public void editarCliente(String nome, String endereco, String telefone, String senha) {
-        super.editarPessoa(nome, telefone, endereco, senha);
-    }
-
-    public void listarClientes(List<Cliente> clientes) {
-        for (Cliente cliente : clientes) {
-            cliente.mostrarPessoa();
-        }
-    }
-
-    public void removerCliente(List<Cliente> clientes) {
-        clientes.remove(this); 
-    }
-
-    public boolean logarCliente(String login, String senha) {
-        return super.logarPessoa(login, senha); 
     }
 
     public int getNumeroDeCompras() {

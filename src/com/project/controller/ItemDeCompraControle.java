@@ -1,9 +1,9 @@
 package com.project.controller;
 
-import java.sql.SQLException;
 import com.project.model.DAO.ItemDeCompraDAO;
 import com.project.model.entidades.ItemDeCompra;
 import com.project.view.ItemDeCompraView;
+import java.sql.SQLException;
 
 public class ItemDeCompraControle {
     private ItemDeCompra itemDeCompra;
@@ -14,21 +14,8 @@ public class ItemDeCompraControle {
         this.itemDeCompra = itemDeCompra;
         this.itemDeCompraView = itemDeCompraView;
     }
-   
-    public void atualizarQuantidadeComprada(int novoQuantidadeComprada) {
-        itemDeCompra.setQuantidadeComprada(novoQuantidadeComprada);
-        System.out.println("Quantidade Comprada atualizado com sucesso!");
-    }
 
-
-    public void atualizarPrecoDoItemDeCompra(double novoPrecoDoItemDeCompra) {
-        itemDeCompra.setPrecoDoItemDeCompra(novoPrecoDoItemDeCompra);
-        System.out.println("Preco do Item de Compra atualizado com sucesso!");
-    }
-
-     public void exibirInformacoes() {
-        itemDeCompraView.printInformacoes(this.itemDeCompra);
-    }
+    
 
     public void salvar(){
         try {

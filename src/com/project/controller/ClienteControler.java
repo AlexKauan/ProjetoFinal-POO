@@ -4,6 +4,7 @@ import com.project.model.DAO.ClienteDAO;
 import com.project.model.entidades.Cliente;
 import com.project.view.ClienteView;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ClienteControler {
     private Cliente cliente;
@@ -15,49 +16,33 @@ public class ClienteControler {
         this.clienteView = clienteView;
     }
 
-    public void atualizariId(int novoId, String novoNome) {
-        cliente.setId(novoId);
-        System.out.println("Id atualizado com sucesso!");
-
-        cliente.setNome(novoNome);
-        System.out.println("Nome atualizado com sucesso!");
-
-        System.out.println("Login atualizado com sucesso!");
+    
+    public int calcularNumeroDeCompras() {
+        return cliente.getNumeroDeCompras();
     }
 
-    public void atualizarSenha(String novoSenha) {
-        cliente.setSenha(novoSenha);
-        System.out.println("Senha atualizado com sucesso!");
+    public void mostrarCliente() {
+        System.out.println(cliente.toString());
     }
 
-    public void atualizarTelefone(String novoTelefone) {
-        cliente.setTelefone(novoTelefone);
-        System.out.println("Telefone atualizado com sucesso!");
+    public void editarCliente(String nome, String endereco, String telefone, String senha) {
+        cliente.editarPessoa(nome, telefone, endereco, senha);
     }
 
-    public void atualizarEmail(String novoEmail) {
-        cliente.setEmail(novoEmail);
-        System.out.println("Email atualizado com sucesso!");
+    public void listarClientes(List<Cliente> clientes) {
+        for (Cliente cliente : clientes) {
+            cliente.mostrarPessoa();
+        }
     }
 
-    public void atualizarEndereco(String novoEndereco) {
-        cliente.setEndereco(novoEndereco);
-        System.out.println("Endereço atualizado com sucesso!");
+    public void removerCliente(List<Cliente> clientes) {
+        clientes.remove(this); 
     }
 
-    public void atualizarNumeroDeCompras(int novoNumeroDeCompras) {
-        cliente.setNumeroDeCompras(novoNumeroDeCompras);
-        System.out.println("Número de compras atualizado com sucesso!");
+    public boolean logarCliente(String login, String senha) {
+        return cliente.logarPessoa(login, senha); 
     }
-
-    public void atualizarTotalComprado(double novoTotalComprado) {
-        cliente.setTotalComprado(novoTotalComprado);
-        System.out.println("Total comprado atualizado com sucesso!");
-    }
-
-    public void exibirInformacoes() {
-        clienteView.printInformacoes(this.cliente);
-    }
+    
 
     public void salvar(){
         try {
@@ -80,19 +65,20 @@ public class ClienteControler {
     }
 
 
-    // Getters e Setters para Cliente e ClienteView, caso seja necessário
-
     public Cliente getCliente() {
         return cliente;
     }
+
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
+
     public ClienteView getClienteView() {
         return clienteView;
     }
+
 
     public void setClienteView(ClienteView clienteView) {
         this.clienteView = clienteView;

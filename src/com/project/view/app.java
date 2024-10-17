@@ -1,13 +1,14 @@
-package com.project.controller;
+package com.project.view;
 
+import java.util.ArrayList;
+
+import com.project.controller.ClienteControler;
 import com.project.model.DAO.BancoDeDados;
 import com.project.model.DAO.ClienteDAO;
 import com.project.model.entidades.Cliente;
-import com.project.view.ClienteView;
-import java.util.ArrayList;
 
-public class App {
-    public static void main(String[] args) {
+public class app {
+ public static void main(String[] args) {
         try {
             // Iniciando a conexão com o banco de dados
             BancoDeDados.iniciarConexao();

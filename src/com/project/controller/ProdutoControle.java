@@ -1,85 +1,87 @@
 package com.project.controller;
 
-import com.project.model.DAO.ClienteDAO;
-import com.project.model.DAO.ProdutoDAO;
 import com.project.model.entidades.Produto;
-import com.project.view.ProdutoView;
-import java.sql.SQLException;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoControle {
-    private Produto produto;
-    private ProdutoView produtoView;
+    private List<Produto> produtos;
 
-    // Contrutor
-    public ProdutoControle(Produto produto, ProdutoView produtoView) {
-        this.produto = produto;
-        this.produtoView = produtoView;
+    // Construtor
+    public ProdutoControle() {
+        this.produtos = new ArrayList<>();
     }
 
-    public void atualizarCodigoDoProduto(int novoCodigoDoProduto) {
-        produto.setCodigoDoProduto(novoCodigoDoProduto);
-        System.out.println("Codigo DoProduto atualizado com sucesso!");
+    public void adicionarProduto(Produto produto) {
+        produtos.add(produto);
+        System.out.println("Produto cadastrado: " + produto);
     }
 
-    public void atualizarDescricao(String descricao) {
-        produto.setDescricao(descricao);
-        System.out.println("Descricao atualizado com sucesso!");
-    }
-
-    public void atualizarPrecoUnitario(double precoUnitario) {
-        produto.setPrecoUnitario(precoUnitario);
-        System.out.println("Preco Unitario atualizado com sucesso!");
-    }
-    
-    public void atualizarQuantidadeDisponivel(int quantidadeDisponivel) {
-        produto.setQuantidadeDisponivel(quantidadeDisponivel);
-        System.out.println("Quantidade Disponivel atualizado com sucesso!");
-    }
-
-    public void exibirInformacoes() {
-        produtoView.printInformacoes(this.produto);
-    }
-
-     public void salvar(){
-        try {
-            ProdutoDAO.salvar(this.produto);
-            System.out.println("Produto Salvo Com sucesso!!!");
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            System.out.println("Produto Não Salvo!!!");
+    public void mostrarProduto(int idProduto) {
+        Produto produto = encontrarProdutoPorId(idProduto);
+        if (produto != null) {
+            System.out.println(produto);
+        } else {
+            System.out.println("Produto com ID " + idProduto + " não encontrado.");
         }
     }
 
-     public void deletar(){
-        try {
-            ProdutoDAO.deletar(this.produto);
-            System.out.println("Produto Deletado Com sucesso!!!");
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            System.out.println("Produto Não Deletado!!!");
+    public void listarProdutos() {
+        if (produtos.isEmpty()) {
+            System.out.println("Nenhum produto cadastrado.");
+        } else {
+            for (Produto produto : produtos) {
+                System.out.println(produto);
+            }
         }
     }
 
-    // Getters e Setters para Produto e ProdutoView, caso seja necessário
-    public Produto getProduto() {
-        return produto;
+    public void editarProduto(int idProduto, String novaDescricao, double novoPreco, int novaQuantidadeDisponivel) {
+        Produto produto = encontrarProdutoPorId(idProduto);
+        if (produto != null) {
+            produto.setDescricao(novaDescricao);
+            produto.setPrecoUnitario(novoPreco);
+            produto.setQuantidadeDisponivel(novaQuantidadeDisponivel);
+            System.out.println("Produto editado com sucesso.");
+        } else {
+            System.out.println("Produto com ID " + idProduto + " não encontrado.");
+        }
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void removerProduto(int idProduto) {
+        Produto produto = encontrarProdutoPorId(idProduto);
+        if (produto != null) {
+            produtos.remove(produto);
+            System.out.println("Produto removido com sucesso.");
+        } else {
+            System.out.println("Produto com ID " + idProduto + " não encontrado.");
+        }
     }
 
-    public ProdutoView getProdutoView() {
-        return produtoView;
+    public void consultarQuantidadeDisponivel(int idProduto) {
+        Produto produto = encontrarProdutoPorId(idProduto);
+        if (produto != null) {
+            System.out.println("Quantidade disponível: " + produto.getQuantidadeDisponivel());
+        } else {
+            System.out.println("Produto com ID " + idProduto + " não encontrado.");
+        }
     }
 
-    public void setProdutoView(ProdutoView produtoView) {
-        this.produtoView = produtoView;
+    public void consultarPrecoUnitario(int idProduto) {
+        Produto produto = encontrarProdutoPorId(idProduto);
+        if (produto != null) {
+            System.out.println("Preço unitário: R$ " + produto.getPrecoUnitario());
+        } else {
+            System.out.println("Produto com ID " + idProduto + " não encontrado.");
+        }
     }
 
-    
+    private Produto encontrarProdutoPorId(int idProduto) {
+        for (Produto produto : produtos) {
+            if (produto.getIdProduto() == idProduto) {
+                return produto;
+            }
+        }
+        return null;
+    }
 }

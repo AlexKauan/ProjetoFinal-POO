@@ -6,6 +6,7 @@ import java.util.List;
 public class Compra{
     private int idCompra;
     private Cliente cliente;
+    private ItemDeCompra itemDeCompra;
     private String date;
     private String statusCompra;
     private List<ItemDeCompra> itens;
@@ -62,7 +63,6 @@ public class Compra{
         this.itens = itens;
     }
 
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -71,5 +71,15 @@ public class Compra{
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public ItemDeCompra getItemDeCompra() {
+        return itemDeCompra;
+    }
+
+    public void setItemDeCompra(ItemDeCompra itemDeCompra) {
+        this.itemDeCompra = itemDeCompra;
+    }
+
+
 }
 

@@ -16,7 +16,6 @@ public abstract class Pessoa {
 
     public Pessoa(){}
 
-    // Construtor da classe Pessoa
     public Pessoa(String login, String senha, String nome, String telefone, String email, String endereco) {
         this.login = login;
         this.senha = senha;
@@ -26,7 +25,6 @@ public abstract class Pessoa {
         this.endereco = endereco;
     }
 
-    // Construtor da classe Pessoa
     public Pessoa(int id, String login, String senha, String nome, String telefone, String email, String endereco) {
         this.id = id;
         this.login = login;
