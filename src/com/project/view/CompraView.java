@@ -1,10 +1,6 @@
 package com.project.view;
 
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Scanner;
-
-import com.project.controller.CompraControle;
+import com.project.controllers.CompraController;
 import com.project.model.DAO.CompraDAO;
 import com.project.model.DAO.ProdutoDAO;
 import com.project.model.entidades.Cliente;
@@ -12,6 +8,9 @@ import com.project.model.entidades.Compra;
 import com.project.model.entidades.ItemDeCompra;
 import com.project.model.entidades.Pessoa;
 import com.project.model.entidades.Produto;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Scanner;
 
 public class CompraView {
 

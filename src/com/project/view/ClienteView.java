@@ -1,9 +1,8 @@
 package com.project.view;
 
-import java.util.Scanner;
-
-import com.project.controller.ClienteControler;
+import com.project.controllers.ClienteController;
 import com.project.model.entidades.Cliente;
+import java.util.Scanner;
 
 public class ClienteView {
 
