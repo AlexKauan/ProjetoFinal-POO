@@ -1,9 +1,8 @@
 package com.project.model.entidades;
 
+import com.project.controllers.CompraController;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.project.controller.CompraControle;
 
 public class Compra {
     private int idCompra;
@@ -31,7 +30,7 @@ public class Compra {
     }
 
     public static void criarCompra(int idCliente, String date, String statusCompra) {
-        CompraControle.cadastrarCompra(idCliente, date, statusCompra);
+        CompraController.cadastrarCompra(idCliente, date, statusCompra);
     }
 
     public void editarComora(Cliente cliente, String date, String statusCompra) {
@@ -93,11 +92,9 @@ public class Compra {
         return "Compra idCompra = " + idCompra
                 + "\n" + "cliente = " + cliente.getNome()
                 + "\n" + "Date = " + date
-                + "\n" + "Status da Compra = " + statusCompra 
-                + "\n" +"------------------------------"; 
-         
-                
+                + "\n" + "Status da Compra = " + statusCompra
+                + "\n" + "------------------------------";
+
     }
-    
 
 }

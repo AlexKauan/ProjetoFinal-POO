@@ -20,7 +20,7 @@ public class CompraView {
         Scanner sc = new Scanner(System.in);
 
         int menu = -1;
-        String date =  LocalDate.now().toString();
+        String date = LocalDate.now().toString();
         String statusCompra = "Em aberto";
         int idCliente = 0;
         int idCompra = 0;
@@ -59,34 +59,35 @@ public class CompraView {
                     // Compra.criarCompra(cliente.getId(), date, statusCompra);
 
                     Compra compra = new Compra(cliente, date, statusCompra);
-                    
+
                     try {
                         CompraDAO.salvar(compra);
                     } catch (SQLException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                    //Salva compra para pega seu id e adicionar em item de compra
-                    ItemDeCompra itemDeCompra = new ItemDeCompra(compra.getIdCompra(), produto.getPrecoUnitario() * quantidadeComprada, quantidadeComprada,produto);
+                    // Salva compra para pega seu id e adicionar em item de compra
+                    ItemDeCompra itemDeCompra = new ItemDeCompra(compra.getIdCompra(),
+                            produto.getPrecoUnitario() * quantidadeComprada, quantidadeComprada, produto);
                     itemDeCompra.consultarItem();
-                    
+
                     break;
                 case 2:
                     System.out.println("Buscar Compra:");
                     System.out.print("Informe o ID do Cliente");
                     idCompra = sc.nextInt();
 
-                    CompraControle.mostrarCompra(idCompra);
+                    CompraController.mostrarCompra(idCompra);
                     break;
                 case 3:
                     System.out.println("Listar Compras:");
-                    CompraControle.listarCompras();
+                    CompraController.listarCompras();
                     break;
 
                 case 4:
                     System.out.print("Remover Compra ");
                     idCompra = sc.nextInt();
-                    CompraControle.removerCompra(idCompra);
+                    CompraController.removerCompra(idCompra);
                     break;
                 default:
                     break;

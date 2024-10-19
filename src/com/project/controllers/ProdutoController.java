@@ -1,14 +1,14 @@
-package com.project.controller;
+package com.project.controllers;
 
 import com.project.model.entidades.Produto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutoControle {
+public class ProdutoController {
     private List<Produto> produtos;
 
     // Construtor
-    public ProdutoControle() {
+    public ProdutoController() {
         this.produtos = new ArrayList<>();
     }
 

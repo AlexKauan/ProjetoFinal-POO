@@ -1,7 +1,6 @@
 package com.project.model.entidades;
 
-import com.project.controller.CompraControle;
-import com.project.controller.ItemDeCompraControle;
+import com.project.controllers.ItemDeCompraController;
 
 public class ItemDeCompra {
     private int id_item_compra;
@@ -10,9 +9,11 @@ public class ItemDeCompra {
     private double precoDoItemDeCompra;
     private Produto produto;
 
-    public ItemDeCompra(){}
+    public ItemDeCompra() {
+    }
 
-    public ItemDeCompra(int id_item_compra, int id_compra, int quantidadeComprada, double precoDoItemDeCompra, Produto produto) {
+    public ItemDeCompra(int id_item_compra, int id_compra, int quantidadeComprada, double precoDoItemDeCompra,
+            Produto produto) {
         this.id_item_compra = id_item_compra;
         this.quantidadeComprada = quantidadeComprada;
         this.precoDoItemDeCompra = precoDoItemDeCompra;
@@ -23,8 +24,9 @@ public class ItemDeCompra {
         this.quantidadeComprada = quantidadeComprada;
     }
 
-      public static void criarItemDeCompra(int id_compra, double precoDoItemDeCompra, int quantidadeComprada, Produto produto) {
-        ItemDeCompraControle.cadastrarItemDeCompra( id_compra, precoDoItemDeCompra,  quantidadeComprada, produto);
+    public static void criarItemDeCompra(int id_compra, double precoDoItemDeCompra, int quantidadeComprada,
+            Produto produto) {
+        ItemDeCompraController.cadastrarItemDeCompra(id_compra, precoDoItemDeCompra, quantidadeComprada, produto);
     }
 
     public int getId_item_compra() {
@@ -57,14 +59,14 @@ public class ItemDeCompra {
 
     public void setProduto(Produto produto) {
         this.produto = produto;
-    } 
+    }
 
-    public void adicionarItem(int quantidade, double preco){
+    public void adicionarItem(int quantidade, double preco) {
         this.quantidadeComprada += quantidade;
         this.precoDoItemDeCompra = preco;
     }
 
-    public void consultarItem(){
+    public void consultarItem() {
         System.out.println(this.toString());
     }
 
@@ -85,5 +87,5 @@ public class ItemDeCompra {
     public void setId_compra(int id_compra) {
         this.id_compra = id_compra;
     }
-  
+
 }
