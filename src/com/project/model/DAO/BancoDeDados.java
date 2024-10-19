@@ -35,11 +35,8 @@ public class BancoDeDados {
         VendedorDAO.conn = getConnection();
         ClienteDAO.conn = getConnection();
         CompraDAO.conn = getConnection();
-        /*LoteDAO.conn = getConnection();
-        EstoqueDAO.conn = getConnection();
-        FuncionarioDAO.conn = getConnection();
-        ClienteDAO.conn = getConnection();
-        PedidoDAO.conn = getConnection();*/
+        ItemDeCompraDAO.conn = getConnection();
+        ProdutoDAO.conn = getConnection();
     }
 
     public static void fecharConexao() throws SQLException {

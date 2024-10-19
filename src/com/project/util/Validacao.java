@@ -10,6 +10,6 @@ public class Validacao {
 
     // Valida o formato do telefone (apenas números)
     // public static boolean validarTelefone(String telefone) {
-    //     return telefone.matches("\\d{10,11}");
+    // return telefone.matches("\\d{10,11}");
     // }
 }

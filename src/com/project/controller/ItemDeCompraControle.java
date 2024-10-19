@@ -1,7 +1,11 @@
 package com.project.controller;
 
+import com.project.model.DAO.CompraDAO;
 import com.project.model.DAO.ItemDeCompraDAO;
+import com.project.model.entidades.Cliente;
+import com.project.model.entidades.Compra;
 import com.project.model.entidades.ItemDeCompra;
+import com.project.model.entidades.Produto;
 import com.project.view.ItemDeCompraView;
 import java.sql.SQLException;
 
@@ -15,7 +19,15 @@ public class ItemDeCompraControle {
         this.itemDeCompraView = itemDeCompraView;
     }
 
-    
+    public static void cadastrarItemDeCompra(int idcompra, double precoDoItemDeCompra, int quantidadeComprada, Produto produto) {
+        ItemDeCompra itemDeCompra = new ItemDeCompra(idcompra, precoDoItemDeCompra, quantidadeComprada, produto);
+        try {
+            ItemDeCompraDAO.salvar(itemDeCompra);
+            System.out.println("\nItem de Compra cadastrado com sucesso\n");
+        } catch (SQLException e) {
+            System.out.println("Erro ao criar o Compra");
+        }
+    }
 
     public void salvar(){
         try {

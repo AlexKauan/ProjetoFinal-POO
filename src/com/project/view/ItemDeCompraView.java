@@ -1,20 +1,43 @@
 package com.project.view;
 
+import java.util.Scanner;
+
 import com.project.model.entidades.ItemDeCompra;
+import com.project.model.entidades.Produto;
 
 public class ItemDeCompraView {
 
-    // Método para exibir as informações do cliente
-    public void printInformacoes(ItemDeCompra itemDeCompra) {
-        if (itemDeCompra == null) {
-            System.out.println("Nenhuma informação itemDeCompra de disponível.");
-            return;
+    public static void chamarMenuCompra() {
+        int opcao = 0;
+        Scanner sc = new Scanner(System.in);
+
+        int menu = -1;
+        int id_compra = 0;
+        int quantidadeComprada = 0;
+        double precoDoItemDeCompra = 0.0;
+        Produto produto;
+
+        while (menu != 0) {
+
+            System.out.println("\n Escolha uma opção de Item de Compra ");
+            System.out.println("=======================================");
+            System.out.println("     1 - Cadastrar Ite de Compra       ");
+            System.out.println("=======================================");
+
+            System.out.print("Opcao ");
+            opcao = sc.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    
+                    
+                    break;
+            
+                default:
+                    break;
+            }
         }
 
-        System.out.println("Informações do Item de Compra:");
-        System.out.println("Nome: " + itemDeCompra.getPrecoDoItemDeCompra());
-        System.out.println("Telefone: " + itemDeCompra.getQuantidadeComprada());
     }
+
 }
-
-

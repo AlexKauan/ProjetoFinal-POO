@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import com.project.model.entidades.Cliente;
 
-public class ClienteDAO{
+public class ClienteDAO {
 
     public static Connection conn;
 
@@ -19,17 +19,17 @@ public class ClienteDAO{
         String sql = "SELECT id_cliente, login, senha, nome, telefone, email, endereco, numero_de_compras, totalComprado from cliente where id_cliente = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, id);
-        
+
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             cliente = new Cliente();
             cliente.setId(rs.getInt("id_cliente"));
             cliente.setLogin(rs.getString("login"));
             cliente.setSenha(rs.getString("senha"));
-            cliente.setNome(rs.getString("nome")); 
+            cliente.setNome(rs.getString("nome"));
             cliente.setTelefone(rs.getString("telefone"));
             cliente.setEmail(rs.getString("email"));
-            cliente.setEndereco(rs.getString("endereco"));     
+            cliente.setEndereco(rs.getString("endereco"));
             cliente.setNumeroDeCompras(rs.getInt("numero_de_compras"));
             cliente.setTotalComprado(rs.getDouble("totalComprado"));
         }
@@ -51,10 +51,10 @@ public class ClienteDAO{
             cliente.setId(rs.getInt("id_cliente"));
             cliente.setLogin(rs.getString("login"));
             cliente.setSenha(rs.getString("senha"));
-            cliente.setNome(rs.getString("nome")); 
+            cliente.setNome(rs.getString("nome"));
             cliente.setTelefone(rs.getString("telefone"));
             cliente.setEmail(rs.getString("email"));
-            cliente.setEndereco(rs.getString("endereco"));  
+            cliente.setEndereco(rs.getString("endereco"));
             cliente.setNumeroDeCompras(rs.getInt("numero_de_compras"));
             cliente.setTotalComprado(rs.getDouble("totalComprado"));
 
@@ -82,9 +82,9 @@ public class ClienteDAO{
         return resultado;
     }
 
-    public static void get_id_cliente(Cliente cliente) throws SQLException{
+    public static void get_id_cliente(Cliente cliente) throws SQLException {
         String sql = "SELECT id_cliente from Cliente WHERE login = ? and senha = ? and nome = ? and telefone = ? and email = ? and endereco = ? and numero_de_compras = ? and totalComprado = ?";
-        
+
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, cliente.getLogin());
         ps.setString(2, cliente.getSenha());
@@ -104,7 +104,6 @@ public class ClienteDAO{
         BancoDeDados.fecharPreparedStatement(ps);
 
     }
-
 
     public static int atualizar(Cliente cliente) throws SQLException {
         String sql = "UPDATE cliente set login = ?, senha = ?, nome = ?, telefone = ?, email = ?, endereco = ?, numero_de_compras = ?, totalComprado = ? WHERE id_cliente = ?";
@@ -126,7 +125,7 @@ public class ClienteDAO{
     public static void salvar(Cliente cliente) throws SQLException {
         if (cliente.getId() != 0)
             atualizar(cliente);
-        else{
+        else {
             inserir(cliente);
             get_id_cliente(cliente);
         }
@@ -143,4 +142,27 @@ public class ClienteDAO{
         return resultado;
     }
 
+    public static Cliente pegar_por_login(String login) throws SQLException {
+        Cliente cliente = null;
+        String sql = "SELECT id_cliente, login, senha, nome, telefone, email, endereco, numero_de_compras, totalComprado from cliente where login = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, login);
+
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            cliente = new Cliente();
+            cliente.setId(rs.getInt("id_cliente"));
+            cliente.setLogin(rs.getString("login"));
+            cliente.setSenha(rs.getString("senha"));
+            cliente.setNome(rs.getString("nome"));
+            cliente.setTelefone(rs.getString("telefone"));
+            cliente.setEmail(rs.getString("email"));
+            cliente.setEndereco(rs.getString("endereco"));
+            cliente.setNumeroDeCompras(rs.getInt("numero_de_compras"));
+            cliente.setTotalComprado(rs.getDouble("totalComprado"));
+        }
+        BancoDeDados.fecharResultSet(rs);
+        BancoDeDados.fecharPreparedStatement(ps);
+        return cliente;
+    }
 }
