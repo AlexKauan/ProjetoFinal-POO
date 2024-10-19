@@ -3,16 +3,17 @@ package com.project.model.entidades;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Compra{
+import com.project.controller.CompraControle;
+
+public class Compra {
     private int idCompra;
     private Cliente cliente;
-    private ItemDeCompra itemDeCompra;
     private String date;
     private String statusCompra;
     private List<ItemDeCompra> itens;
 
-    public Compra(){}
-
+    public Compra() {
+    }
 
     public Compra(int idCompra, Cliente cliente, String date, String statusCompra) {
         this.idCompra = idCompra;
@@ -29,6 +30,21 @@ public class Compra{
         this.itens = new ArrayList<>();
     }
 
+    public static void criarCompra(int idCliente, String date, String statusCompra) {
+        CompraControle.cadastrarCompra(idCliente, date, statusCompra);
+    }
+
+    public void editarComora(Cliente cliente, String date, String statusCompra) {
+        if (cliente != null) {
+            setCliente(cliente);
+        }
+        if (date != null) {
+            setDate(date);
+        }
+        if (statusCompra != null) {
+            setStatusCompra(statusCompra);
+        }
+    }
 
     // Getters e Setters
     public int getIdCompra() {
@@ -67,19 +83,21 @@ public class Compra{
         return cliente;
     }
 
-
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
-    public ItemDeCompra getItemDeCompra() {
-        return itemDeCompra;
+    @Override
+    public String toString() {
+        System.out.println("-------------------------------");
+        return "Compra idCompra = " + idCompra
+                + "\n" + "cliente = " + cliente.getNome()
+                + "\n" + "Date = " + date
+                + "\n" + "Status da Compra = " + statusCompra 
+                + "\n" +"------------------------------"; 
+         
+                
     }
-
-    public void setItemDeCompra(ItemDeCompra itemDeCompra) {
-        this.itemDeCompra = itemDeCompra;
-    }
-
+    
 
 }
-

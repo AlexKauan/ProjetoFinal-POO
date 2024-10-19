@@ -1,10 +1,12 @@
 package com.project.controller;
 
 import com.project.model.DAO.CompraDAO;
+import com.project.model.entidades.Cliente;
 import com.project.model.entidades.Compra;
 import com.project.view.CompraView;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class CompraControle {
     private Compra compra;
@@ -16,27 +18,45 @@ public class CompraControle {
         this.compraView = compraView;
     }
 
-    public void cadastrarCompra() {
-        System.out.println("Compra cadastrada com ID: " + compra.getIdCompra());
-    }
-
-    public void mostrarCompra() {
-        System.out.println("ID da Compra: " + compra.getIdCompra());
-        System.out.println("Cliente: " + compra.getCliente().getNome());
-        System.out.println("Data: " + compra.getDate());
-        System.out.println("Status: " + compra.getStatusCompra());
-        System.out.println("Itens da Compra:");
-        for (var item : compra.getItens()) {
-            System.out.println("Item: " + item.getItemDeCompra().toString());
+    public static void cadastrarCompra(int idCliente, String date, String statusCompra) {
+        Cliente cliente = ClienteControler.buscarCliente(idCliente);
+        Compra compra = new Compra(cliente, date,statusCompra);
+        try {
+            CompraDAO.salvar(compra);
+            System.out.println("\nCompra cadastrado com sucesso\n");
+        } catch (SQLException e) {
+            System.out.println("Erro ao criar o Compra");
         }
     }
 
-    public void listarCompras(List<Compra> compras) {
-        for (Compra compra : compras) {
-            System.out.println("ID da Compra: " + compra.getIdCompra());
-            System.out.println("Cliente: " + compra.getCliente().getNome());
-            System.out.println("Data: " + compra.getDate());
-            System.out.println("Status: " + compra.getStatusCompra());
+     public static void mostrarCompra(int idCompra) {
+        Compra compra;
+        try {
+            compra = CompraDAO.pegar(idCompra);
+            if (compra == null) {
+                System.out.println("Esse compra não existe\n");
+            } else {
+                System.out.println("\nInformações do compra:\n");
+                System.out.println(compra);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao visualizar o Compra");
+        }
+    }
+
+
+
+    public static void listarCompras() {
+        try {
+            ArrayList<Compra> compras = CompraDAO.pegarTodos();
+            if(compras.size() == 0){
+                System.out.println("\nNão há pedidos para lsitar\n");
+                return;
+            }
+            for (Compra compra : compras)
+                System.out.println(compra);
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar os pedidos");
         }
     }
 
@@ -47,8 +67,18 @@ public class CompraControle {
         System.out.println("Compra editada com sucesso.");
     }
 
-    public void removerCompra() {
-        System.out.println("Compra removida com ID: " + compra.getIdCompra());
+    public static void removerCompra(int idcompra) {
+        try {
+            Compra compra = CompraDAO.pegar(idcompra);
+            if(compra == null){
+                System.out.println("\nEsse pedido não está no sistema\n");
+                return;
+            }
+            CompraDAO.deletar(compra);
+            System.out.println("\nPedido deletado com sucesso");
+        } catch (SQLException e) {
+            System.out.println("Erro ao deletar o pedido");
+        }
     }
 
     public void fecharCompra() {
@@ -61,24 +91,24 @@ public class CompraControle {
         System.out.println("Compra cancelada.");
     }
 
-  public double calcularValorTotalDaCompra() {
-        double total = 0;
-        for (var item : compra.getItens()) {
-            total += item.calcularValorTotalDoItem();
-        }
-        System.out.println("Valor total da compra: R$ " + total);
-        return total;
-    }
+//   public double calcularValorTotalDaCompra() {
+//         double total = 0;
+//         for (var item : compra.getItens()) {
+//             total += item.calcularValorTotalDoItem();
+//         }
+//         System.out.println("Valor total da compra: R$ " + total);
+//         return total;
+//     }
     
 
     public void salvar(){
         try {
             CompraDAO.salvar(this.compra);
-            System.out.println("Cliente Salvo Com sucesso!!!");
+            System.out.println("COmpra Salvo Com sucesso!!!");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            System.out.println("Cliente Não Salvo!!!");
+            System.out.println("Compra Não Salvo!!!");
         }
     }
 
