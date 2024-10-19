@@ -1,4 +1,4 @@
-package com.project.controller;
+package com.project.controllers;
 
 import com.project.model.DAO.ClienteDAO;
 import com.project.model.entidades.Cliente;
@@ -7,17 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteControler {
+public class ClienteController {
     private Cliente cliente;
     private ClienteView clienteView;
 
     // Construtor
-    public ClienteControler(Cliente cliente, ClienteView clienteView) {
+    public ClienteController(Cliente cliente, ClienteView clienteView) {
         this.cliente = cliente;
         this.clienteView = clienteView;
     }
 
-    public ClienteControler(Cliente cliente) {
+    public ClienteController(Cliente cliente) {
         this.cliente = cliente;
     }
 

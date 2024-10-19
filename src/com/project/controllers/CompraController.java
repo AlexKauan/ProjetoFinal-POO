@@ -1,4 +1,4 @@
-package com.project.controller;
+package com.project.controllers;
 
 import com.project.model.DAO.CompraDAO;
 import com.project.model.entidades.Cliente;
@@ -7,20 +7,19 @@ import com.project.view.CompraView;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
-public class CompraControle {
+public class CompraController {
     private Compra compra;
     private CompraView compraView;
 
-    //Construtor
-    public CompraControle(Compra compra, CompraView compraView) {
+    // Construtor
+    public CompraController(Compra compra, CompraView compraView) {
         this.compra = compra;
         this.compraView = compraView;
     }
 
     public static void cadastrarCompra(int idCliente, String date, String statusCompra) {
-        Cliente cliente = ClienteControler.buscarCliente(idCliente);
-        Compra compra = new Compra(cliente, date,statusCompra);
+        Cliente cliente = ClienteController.buscarCliente(idCliente);
+        Compra compra = new Compra(cliente, date, statusCompra);
         try {
             CompraDAO.salvar(compra);
             System.out.println("\nCompra cadastrado com sucesso\n");
@@ -29,7 +28,7 @@ public class CompraControle {
         }
     }
 
-     public static void mostrarCompra(int idCompra) {
+    public static void mostrarCompra(int idCompra) {
         Compra compra;
         try {
             compra = CompraDAO.pegar(idCompra);
@@ -44,12 +43,10 @@ public class CompraControle {
         }
     }
 
-
-
     public static void listarCompras() {
         try {
             ArrayList<Compra> compras = CompraDAO.pegarTodos();
-            if(compras.size() == 0){
+            if (compras.size() == 0) {
                 System.out.println("\nNão há pedidos para lsitar\n");
                 return;
             }
@@ -70,7 +67,7 @@ public class CompraControle {
     public static void removerCompra(int idcompra) {
         try {
             Compra compra = CompraDAO.pegar(idcompra);
-            if(compra == null){
+            if (compra == null) {
                 System.out.println("\nEsse pedido não está no sistema\n");
                 return;
             }
@@ -91,17 +88,16 @@ public class CompraControle {
         System.out.println("Compra cancelada.");
     }
 
-//   public double calcularValorTotalDaCompra() {
-//         double total = 0;
-//         for (var item : compra.getItens()) {
-//             total += item.calcularValorTotalDoItem();
-//         }
-//         System.out.println("Valor total da compra: R$ " + total);
-//         return total;
-//     }
-    
+    // public double calcularValorTotalDaCompra() {
+    // double total = 0;
+    // for (var item : compra.getItens()) {
+    // total += item.calcularValorTotalDoItem();
+    // }
+    // System.out.println("Valor total da compra: R$ " + total);
+    // return total;
+    // }
 
-    public void salvar(){
+    public void salvar() {
         try {
             CompraDAO.salvar(this.compra);
             System.out.println("COmpra Salvo Com sucesso!!!");
@@ -112,7 +108,7 @@ public class CompraControle {
         }
     }
 
-    public void deletar(){
+    public void deletar() {
         try {
             CompraDAO.deletar(this.compra);
             System.out.println("Cliente Deletado Com sucesso!!!");

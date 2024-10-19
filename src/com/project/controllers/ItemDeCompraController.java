@@ -1,25 +1,23 @@
-package com.project.controller;
+package com.project.controllers;
 
-import com.project.model.DAO.CompraDAO;
 import com.project.model.DAO.ItemDeCompraDAO;
-import com.project.model.entidades.Cliente;
-import com.project.model.entidades.Compra;
 import com.project.model.entidades.ItemDeCompra;
 import com.project.model.entidades.Produto;
 import com.project.view.ItemDeCompraView;
 import java.sql.SQLException;
 
-public class ItemDeCompraControle {
+public class ItemDeCompraController {
     private ItemDeCompra itemDeCompra;
     private ItemDeCompraView itemDeCompraView;
 
     // Construtor
-    public ItemDeCompraControle(ItemDeCompra itemDeCompra, ItemDeCompraView itemDeCompraView) {
+    public ItemDeCompraController(ItemDeCompra itemDeCompra, ItemDeCompraView itemDeCompraView) {
         this.itemDeCompra = itemDeCompra;
         this.itemDeCompraView = itemDeCompraView;
     }
 
-    public static void cadastrarItemDeCompra(int idcompra, double precoDoItemDeCompra, int quantidadeComprada, Produto produto) {
+    public static void cadastrarItemDeCompra(int idcompra, double precoDoItemDeCompra, int quantidadeComprada,
+            Produto produto) {
         ItemDeCompra itemDeCompra = new ItemDeCompra(idcompra, precoDoItemDeCompra, quantidadeComprada, produto);
         try {
             ItemDeCompraDAO.salvar(itemDeCompra);
@@ -29,7 +27,7 @@ public class ItemDeCompraControle {
         }
     }
 
-    public void salvar(){
+    public void salvar() {
         try {
             ItemDeCompraDAO.salvar(this.itemDeCompra);
             System.out.println("Cliente Salvo Com sucesso!!!");
@@ -40,7 +38,7 @@ public class ItemDeCompraControle {
         }
     }
 
-    public void deletar(){
+    public void deletar() {
         try {
             ItemDeCompraDAO.deletar(this.itemDeCompra);
             System.out.println("Cliente Deletado Com sucesso!!!");
@@ -51,7 +49,7 @@ public class ItemDeCompraControle {
         }
     }
 
-     // Getters e Setters para ItemDecompra e ItemDecompraView, caso seja necessário
+    // Getters e Setters para ItemDecompra e ItemDecompraView, caso seja necessário
     public ItemDeCompra getItemDeCompra() {
         return itemDeCompra;
     }
@@ -68,5 +66,4 @@ public class ItemDeCompraControle {
         this.itemDeCompraView = itemDeCompraView;
     }
 
-    
 }

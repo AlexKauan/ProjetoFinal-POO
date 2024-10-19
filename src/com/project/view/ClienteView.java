@@ -11,7 +11,6 @@ public class ClienteView {
 
     public static void chamarMenuCliente() {
         int opcao = -1;
-       
 
         int menu = -1;
         String nome = "";
@@ -57,7 +56,7 @@ public class ClienteView {
                     System.out.print("Informe o Total Comprado ");
                     totalComprado = sc.nextDouble();
                     sc.nextLine(); // Limpa o buffer do scanner
-                    ClienteControler.cadastraCliente(login, senha, nome, telefone, email, endereco, numeroDeCompras,
+                    ClienteController.cadastraCliente(login, senha, nome, telefone, email, endereco, numeroDeCompras,
                             totalComprado);
                     break;
                 case 2:
@@ -65,7 +64,7 @@ public class ClienteView {
                     int idClienteEditar = 0;
                     System.out.print("Informe o ID do cliente: ");
                     idClienteEditar = sc.nextInt();
-                    Cliente cliente = ClienteControler.buscarCliente(idClienteEditar);
+                    Cliente cliente = ClienteController.buscarCliente(idClienteEditar);
                     if (cliente == null) {
                         System.out.println("Não é possível editar um cliente que não existe\n");
                         break;
@@ -78,16 +77,16 @@ public class ClienteView {
                     email = null;
                     endereco = null;
 
-                    System.out.println("            Menu Cliente"               );
+                    System.out.println("            Menu Cliente");
                     System.out.println("=======================================");
-                    System.out.println("   1 - Editar Todos"                    );
-                    System.out.println("   2 - Editar Nome"                     );
-                    System.out.println("   3 - Editar Senha"                    );
-                    System.out.println("   4 - Editar Login"                    );
-                    System.out.println("   5 - Editar Telefone"                 );
-                    System.out.println("   6 - Editar Email"                    );
-                    System.out.println("   7 - Editar Endereço"                 );
-                    System.out.println("   0 - Sair"                            );
+                    System.out.println("   1 - Editar Todos");
+                    System.out.println("   2 - Editar Nome");
+                    System.out.println("   3 - Editar Senha");
+                    System.out.println("   4 - Editar Login");
+                    System.out.println("   5 - Editar Telefone");
+                    System.out.println("   6 - Editar Email");
+                    System.out.println("   7 - Editar Endereço");
+                    System.out.println("   0 - Sair");
                     System.out.println("=======================================");
                     int opcao1 = sc.nextInt();
                     sc.nextLine();
@@ -148,7 +147,7 @@ public class ClienteView {
                             System.out.println("Opção Invalida");
                             break;
                     }
-                    ClienteControler.atualizarCliente(idClienteEditar, login, senha, nome, telefone, email, endereco,
+                    ClienteController.atualizarCliente(idClienteEditar, login, senha, nome, telefone, email, endereco,
                             numeroDeCompras,
                             totalComprado);
                     break;
@@ -159,13 +158,13 @@ public class ClienteView {
                     System.out.print("Informe o ID do Cliente: ");
                     idClienteMostra = sc.nextInt();
 
-                    ClienteControler.mostrarCliente(idClienteMostra);
+                    ClienteController.mostrarCliente(idClienteMostra);
                     break;
 
                 case 4:
                     /* Listar todos os Clientes */
                     System.out.println("\nCLientes no sistema:\n");
-                    ClienteControler.listarClientes();
+                    ClienteController.listarClientes();
                     break;
 
                 case 5:
@@ -173,7 +172,7 @@ public class ClienteView {
                     int idClienteExcluir = 0;
                     System.out.print("Informe o ID do Cliente:\n");
                     idClienteExcluir = sc.nextInt();
-                    ClienteControler.removerCliente(idClienteExcluir);
+                    ClienteController.removerCliente(idClienteExcluir);
                     break;
 
                 case 0:

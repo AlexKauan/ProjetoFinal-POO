@@ -1,16 +1,16 @@
-package com.project.controller;
+package com.project.controllers;
 
 import com.project.model.DAO.VendedorDAO;
 import com.project.model.entidades.Vendedor;
 import com.project.view.VendedorView;
 import java.sql.SQLException;
 
-public class VendedorControle {
+public class VendedorController {
     private Vendedor vendedor;
-    private  VendedorView vendedorView;
+    private VendedorView vendedorView;
 
-     // Construtor
-    public VendedorControle(Vendedor vendedor, VendedorView vendedorView) {
+    // Construtor
+    public VendedorController(Vendedor vendedor, VendedorView vendedorView) {
         this.vendedor = vendedor;
         this.vendedorView = vendedorView;
     }
@@ -69,7 +69,7 @@ public class VendedorControle {
         vendedorView.printInformacoes(this.vendedor);
     }
 
-    public void salvar(){
+    public void salvar() {
         try {
             VendedorDAO.salvar(this.vendedor);
             System.out.println("Cliente Salvo Com sucesso!!!");
@@ -80,7 +80,7 @@ public class VendedorControle {
         }
     }
 
-    public void deletar(){
+    public void deletar() {
         try {
             VendedorDAO.deletar(this.vendedor);
             System.out.println("Cliente Deletado Com sucesso!!!");
@@ -107,5 +107,4 @@ public class VendedorControle {
         this.vendedorView = vendedorView;
     }
 
-    
 }
