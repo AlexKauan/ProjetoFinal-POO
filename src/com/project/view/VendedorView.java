@@ -1,6 +1,5 @@
 package com.project.view;
 
-
 import com.project.model.entidades.Vendedor;
 
 public class VendedorView {

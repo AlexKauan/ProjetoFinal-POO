@@ -1,4 +1,4 @@
-package com.project.model.DAO;
+package com.project.model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,9 +9,9 @@ import java.sql.Statement;
 
 public class BancoDeDados {
     private static String driver = "org.postgresql.Driver";
-    private static String url = "jdbc:postgresql://localhost:5432/Epoo"; // colocar a porta do banco e nome que eu coloquei no postgres
+    private static String url = "jdbc:postgresql://localhost:5432/postgres";
     private static String user = "postgres";
-    private static String password = "postgres";
+    private static String password = "1364";
 
     private static Connection conn;
 
@@ -32,11 +32,11 @@ public class BancoDeDados {
     }
 
     public static void iniciarConexao() throws SQLException {
-        VendedorDAO.conn = getConnection();
-        ClienteDAO.conn = getConnection();
-        CompraDAO.conn = getConnection();
-        ItemDeCompraDAO.conn = getConnection();
-        ProdutoDAO.conn = getConnection();
+        VendedorDao.conn = getConnection();
+        ClienteDao.conn = getConnection();
+        CompraDao.conn = getConnection();
+        ItemDeCompraDao.conn = getConnection();
+        ProdutoDao.conn = getConnection();
     }
 
     public static void fecharConexao() throws SQLException {
@@ -55,4 +55,3 @@ public class BancoDeDados {
         resultSet.close();
     }
 }
-

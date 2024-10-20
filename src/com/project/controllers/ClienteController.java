@@ -1,6 +1,6 @@
 package com.project.controllers;
 
-import com.project.model.DAO.ClienteDAO;
+import com.project.model.dao.ClienteDao;
 import com.project.model.entidades.Cliente;
 import com.project.view.ClienteView;
 import java.sql.SQLException;
@@ -30,24 +30,26 @@ public class ClienteController {
         Cliente cliente = Cliente.criarCliente(login, senha, nome, telefone, email, endereco, numeroDeCompras,
                 totalComprado);
         try {
-            ClienteDAO.salvar(cliente);
-            System.out.println("\nCLiente cadastrado com sucesso\n");
+            ClienteDao.salvar(cliente);
+            System.out.println("\nCliente cadastrado com sucesso\n");
         } catch (SQLException e) {
-            System.out.println("Erro ao criar o Cliente");
+            e.printStackTrace(); // Exibe o stack trace completo do erro no console
+            System.out.println("Erro ao criar o Cliente: " + e.getMessage());
         }
+
     }
 
     public static void atualizarCliente(int idCliente, String login, String senha, String nome, String telefone,
             String email,
             String endereco, int numeroDeCompras, double totalComprado) {
         try {
-            Cliente cliente = ClienteDAO.pegar(idCliente);
+            Cliente cliente = ClienteDao.pegar(idCliente);
             if (cliente == null) {
                 System.out.println("Esse cliente não existe\n");
             } else {
                 cliente.editarPessoa(login, senha, nome, telefone, email, endereco, numeroDeCompras,
                         totalComprado);
-                ClienteDAO.salvar(cliente);
+                ClienteDao.salvar(cliente);
                 System.out.println("\nCliente editado com sucesso\n");
             }
         } catch (SQLException e) {
@@ -58,7 +60,7 @@ public class ClienteController {
     public static void mostrarCliente(int idCliente) {
         Cliente cliente;
         try {
-            cliente = ClienteDAO.pegar(idCliente);
+            cliente = ClienteDao.pegar(idCliente);
             if (cliente == null) {
                 System.out.println("Esse cliente não existe\n");
             } else {
@@ -72,12 +74,12 @@ public class ClienteController {
 
     public static void editarCliente(int idCliente, String nome, String endereco, String telefone, String senha) {
         try {
-            Cliente cliente = ClienteDAO.pegar(idCliente);
+            Cliente cliente = ClienteDao.pegar(idCliente);
             if (cliente == null) {
                 System.out.println("Esse cliente não existe\n");
             } else {
                 cliente.editarPessoa(nome, endereco, telefone, senha);
-                ClienteDAO.salvar(cliente);
+                ClienteDao.salvar(cliente);
                 System.out.println("\nCliente editado com sucesso\n");
             }
         } catch (SQLException e) {
@@ -87,7 +89,7 @@ public class ClienteController {
 
     public static void listarClientes() {
         try {
-            ArrayList<Cliente> clientes = ClienteDAO.pegarTodos();
+            ArrayList<Cliente> clientes = ClienteDao.pegarTodos();
             if (clientes.size() == 0) {
                 System.out.println("Ainda não há clientes no sistema\n");
             } else {
@@ -109,7 +111,7 @@ public class ClienteController {
         Cliente cliente;
         boolean esta_logado;
         try {
-            cliente = ClienteDAO.pegar_por_login(login);
+            cliente = ClienteDao.pegar_por_login(login);
             if (cliente != null) {
                 esta_logado = cliente.logarPessoa(login, senha);
                 if (esta_logado) {
@@ -131,7 +133,7 @@ public class ClienteController {
 
     public void salvar() {
         try {
-            ClienteDAO.salvar(this.cliente);
+            ClienteDao.salvar(this.cliente);
             System.out.println("Cliente Salvo Com sucesso!!!");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -141,11 +143,11 @@ public class ClienteController {
 
     public static void removerCliente(int idCliente) {
         try {
-            Cliente cliente = ClienteDAO.pegar(idCliente);
+            Cliente cliente = ClienteDao.pegar(idCliente);
             if (cliente == null) {
                 System.out.println("Esse cliente não existe\n");
             } else {
-                ClienteDAO.deletar(cliente);
+                ClienteDao.deletar(cliente);
                 System.out.println("\nCliente deletado com sucesso\n");
             }
         } catch (SQLException e) {
@@ -156,7 +158,7 @@ public class ClienteController {
     public static Cliente buscarCliente(int idCliente) {
         Cliente cliente;
         try {
-            cliente = ClienteDAO.pegar(idCliente);
+            cliente = ClienteDao.pegar(idCliente);
             if (cliente == null) {
                 System.out.println("Esse cliente não existe\n");
                 return cliente;

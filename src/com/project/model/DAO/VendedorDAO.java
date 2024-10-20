@@ -1,4 +1,4 @@
-package com.project.model.DAO;
+package com.project.model.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 import com.project.model.entidades.Vendedor;
 
-
-public class VendedorDAO {
+public class VendedorDao {
 
     public static Connection conn;
 
@@ -27,13 +26,13 @@ public class VendedorDAO {
             vendedor.setId(rs.getInt("id_vendedor"));
             vendedor.setLogin(rs.getString("login"));
             vendedor.setSenha(rs.getString("senha"));
-            vendedor.setNome(rs.getString("nome")); 
+            vendedor.setNome(rs.getString("nome"));
             vendedor.setTelefone(rs.getString("telefone"));
             vendedor.setEmail(rs.getString("email"));
-            vendedor.setEndereco(rs.getString("endereco"));       
+            vendedor.setEndereco(rs.getString("endereco"));
             vendedor.setSalario(rs.getDouble("salario"));
             vendedor.setNumeroDeVendas(rs.getInt("numeroDeVendas"));
-            vendedor.setTotalVendido(rs.getDouble("totalVendido"));   
+            vendedor.setTotalVendido(rs.getDouble("totalVendido"));
         }
         BancoDeDados.fecharResultSet(rs);
         BancoDeDados.fecharPreparedStatement(ps);
@@ -53,13 +52,13 @@ public class VendedorDAO {
             vendedor.setId(rs.getInt("id_vendedor"));
             vendedor.setLogin(rs.getString("login"));
             vendedor.setSenha(rs.getString("senha"));
-            vendedor.setNome(rs.getString("nome")); 
+            vendedor.setNome(rs.getString("nome"));
             vendedor.setTelefone(rs.getString("telefone"));
             vendedor.setEmail(rs.getString("email"));
-            vendedor.setEndereco(rs.getString("endereco"));  
+            vendedor.setEndereco(rs.getString("endereco"));
             vendedor.setSalario(rs.getDouble("salario"));
             vendedor.setNumeroDeVendas(rs.getInt("numeroDeVendas"));
-            vendedor.setTotalVendido(rs.getDouble("totalVendido")); 
+            vendedor.setTotalVendido(rs.getDouble("totalVendido"));
 
             vendedores.add(vendedor);
         }
@@ -87,9 +86,9 @@ public class VendedorDAO {
         return resultado;
     }
 
-    public static void get_id_vendedor(Vendedor vendedor) throws SQLException{
+    public static void get_id_vendedor(Vendedor vendedor) throws SQLException {
         String sql = "SELECT id_vendedor from vendedor WHERE login = ? and senha = ? and nome = ? and telefone = ? and email = ? and endereco = ? and salario = ? and numeroDeVendas = ? and totalVendido=";
-        
+
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, vendedor.getLogin());
         ps.setString(2, vendedor.getSenha());
@@ -123,7 +122,7 @@ public class VendedorDAO {
         ps.setDouble(7, vendedor.getSalario());
         ps.setInt(8, vendedor.getNumeroDeVendas());
         ps.setDouble(9, vendedor.getTotalVendido());
-        
+
         int resultado = ps.executeUpdate();
         BancoDeDados.fecharPreparedStatement(ps);
         return resultado;

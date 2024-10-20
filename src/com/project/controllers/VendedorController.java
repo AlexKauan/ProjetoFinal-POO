@@ -1,6 +1,6 @@
 package com.project.controllers;
 
-import com.project.model.DAO.VendedorDAO;
+import com.project.model.dao.VendedorDao;
 import com.project.model.entidades.Vendedor;
 import com.project.view.VendedorView;
 import java.sql.SQLException;
@@ -71,7 +71,7 @@ public class VendedorController {
 
     public void salvar() {
         try {
-            VendedorDAO.salvar(this.vendedor);
+            VendedorDao.salvar(this.vendedor);
             System.out.println("Cliente Salvo Com sucesso!!!");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -82,7 +82,7 @@ public class VendedorController {
 
     public void deletar() {
         try {
-            VendedorDAO.deletar(this.vendedor);
+            VendedorDao.deletar(this.vendedor);
             System.out.println("Cliente Deletado Com sucesso!!!");
         } catch (SQLException e) {
             // TODO Auto-generated catch block

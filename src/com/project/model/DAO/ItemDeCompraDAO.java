@@ -1,5 +1,5 @@
 
-package com.project.model.DAO;
+package com.project.model.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import com.project.model.entidades.ItemDeCompra;
 import com.project.model.entidades.Produto;
 
-public class ItemDeCompraDAO{
+public class ItemDeCompraDao {
 
     public static Connection conn;
 
@@ -24,12 +24,12 @@ public class ItemDeCompraDAO{
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             item = new ItemDeCompra();
-            produto = ProdutoDAO.pegar(rs.getInt("id_produto"));
+            produto = ProdutoDao.pegar(rs.getInt("id_produto"));
             item.setProduto(produto);
-            item.setId_item_compra(rs.getInt("id_Item_Compra")); 
-            item.setQuantidadeComprada(rs.getInt("quantidadeComprada"));       
-            item.setPrecoDoItemDeCompra(rs.getDouble("precoDoItemDeCompra"));    
-            
+            item.setId_item_compra(rs.getInt("id_Item_Compra"));
+            item.setQuantidadeComprada(rs.getInt("quantidadeComprada"));
+            item.setPrecoDoItemDeCompra(rs.getDouble("precoDoItemDeCompra"));
+
         }
         BancoDeDados.fecharResultSet(rs);
         BancoDeDados.fecharPreparedStatement(ps);
@@ -47,11 +47,11 @@ public class ItemDeCompraDAO{
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             item = new ItemDeCompra();
-            produto = ProdutoDAO.pegar(rs.getInt("id_produto"));
+            produto = ProdutoDao.pegar(rs.getInt("id_produto"));
             item.setProduto(produto);
             item.setId_item_compra(rs.getInt("id_Item_Compra"));
-            item.setQuantidadeComprada(rs.getInt("quantidadeComprada"));       
-            item.setPrecoDoItemDeCompra(rs.getDouble("precoDoItemDeCompra"));      
+            item.setQuantidadeComprada(rs.getInt("quantidadeComprada"));
+            item.setPrecoDoItemDeCompra(rs.getDouble("precoDoItemDeCompra"));
             itens.add(item);
         }
         BancoDeDados.fecharResultSet(rs);
@@ -73,9 +73,9 @@ public class ItemDeCompraDAO{
         return resultado;
     }
 
-    public static void get_id_Itm_compra(ItemDeCompra item) throws SQLException{
+    public static void get_id_Itm_compra(ItemDeCompra item) throws SQLException {
         String sql = "SELECT id_Item_Compra from itemDeCompra WHERE id_compra = ? and id_produto = ? quantidadeComprada = ? and precoDoItemDeCompra = ?";
-        
+
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, item.getProduto().getIdProduto());
         ps.setInt(2, item.getId_compra());
@@ -99,7 +99,6 @@ public class ItemDeCompraDAO{
         ps.setInt(2, item.getId_compra());
         ps.setInt(3, item.getQuantidadeComprada());
         ps.setDouble(4, item.getPrecoDoItemDeCompra());
-        
 
         int resultado = ps.executeUpdate();
         BancoDeDados.fecharPreparedStatement(ps);
@@ -125,4 +124,3 @@ public class ItemDeCompraDAO{
     }
 
 }
-

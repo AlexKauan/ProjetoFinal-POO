@@ -1,4 +1,4 @@
-package com.project.model.DAO;
+package com.project.model.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import com.project.model.entidades.Cliente;
 
-public class ClienteDAO {
+public class ClienteDao {
 
     public static Connection conn;
 
@@ -66,6 +66,7 @@ public class ClienteDAO {
     }
 
     public static int inserir(Cliente cliente) throws SQLException {
+        System.out.println("Tentando inserir cliente com dados: " + cliente);
         String sql = "INSERT INTO cliente (login, senha, nome, telefone, email, endereco, numero_de_compras, totalComprado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -77,6 +78,9 @@ public class ClienteDAO {
         ps.setString(6, cliente.getEndereco());
         ps.setInt(7, cliente.getNumeroDeCompras());
         ps.setDouble(8, cliente.getTotalComprado());
+
+        System.out.println("Executando query: " + ps);
+
         int resultado = ps.executeUpdate();
         BancoDeDados.fecharPreparedStatement(ps);
         return resultado;

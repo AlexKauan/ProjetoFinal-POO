@@ -1,8 +1,8 @@
 package com.project.view;
 
 import com.project.controllers.CompraController;
-import com.project.model.DAO.CompraDAO;
-import com.project.model.DAO.ProdutoDAO;
+import com.project.model.dao.CompraDao;
+import com.project.model.dao.ProdutoDao;
 import com.project.model.entidades.Cliente;
 import com.project.model.entidades.Compra;
 import com.project.model.entidades.ItemDeCompra;
@@ -53,14 +53,14 @@ public class CompraView {
                     idProduto = sc.nextInt();
                     System.out.print("Informe a Quantidade do produto escolhido: ");
                     quantidadeComprada = sc.nextInt();
-                    Produto produto = ProdutoDAO.pegar(idProduto);
+                    Produto produto = ProdutoDao.pegar(idProduto);
 
                     // Compra.criarCompra(cliente.getId(), date, statusCompra);
 
                     Compra compra = new Compra(cliente, date, statusCompra);
 
                     try {
-                        CompraDAO.salvar(compra);
+                        CompraDao.salvar(compra);
                     } catch (SQLException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();

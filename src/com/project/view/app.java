@@ -1,8 +1,8 @@
 package com.project.view;
 
+import com.project.model.dao.BancoDeDados;
 import java.sql.SQLException;
 import java.util.Scanner;
-import com.project.model.DAO.BancoDeDados;
 
 public class app {
     public static void main(String[] args) throws SQLException {

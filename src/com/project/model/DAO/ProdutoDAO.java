@@ -1,5 +1,5 @@
 
-package com.project.model.DAO;
+package com.project.model.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import com.project.model.entidades.Produto;
 
-public class ProdutoDAO{
+public class ProdutoDao {
 
     public static Connection conn;
 
@@ -20,16 +20,16 @@ public class ProdutoDAO{
         String sql = "SELECT id_produto, codigoDoProduto, descricao, precoUnitario, quantidadeDisponivel from produto where id_produto = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, id);
-        
+
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             produto = new Produto();
-            produto.setIdProduto(rs.getInt("id_produto")); 
-            produto.setCodigoDoProduto(rs.getInt("codigoDoProduto")); 
-            produto.setDescricao(rs.getString("descricao"));       
+            produto.setIdProduto(rs.getInt("id_produto"));
+            produto.setCodigoDoProduto(rs.getInt("codigoDoProduto"));
+            produto.setDescricao(rs.getString("descricao"));
             produto.setPrecoUnitario(rs.getDouble("precoUnitario"));
-            produto.setQuantidadeDisponivel(rs.getInt("quantidadeDisponivel"));     
-            
+            produto.setQuantidadeDisponivel(rs.getInt("quantidadeDisponivel"));
+
         }
         BancoDeDados.fecharResultSet(rs);
         BancoDeDados.fecharPreparedStatement(ps);
@@ -41,13 +41,13 @@ public class ProdutoDAO{
         Produto produto = null;
         String sql = "SELECT id_produto, codigoDoProduto, descricao, precoUnitario, quantidadeDisponivel from produto";
         PreparedStatement ps = conn.prepareStatement(sql);
-        
+
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             produto = new Produto();
-            produto.setIdProduto(rs.getInt("id_produto")); 
-            produto.setCodigoDoProduto(rs.getInt("codigoDoProduto")); 
-            produto.setDescricao(rs.getString("descricao"));       
+            produto.setIdProduto(rs.getInt("id_produto"));
+            produto.setCodigoDoProduto(rs.getInt("codigoDoProduto"));
+            produto.setDescricao(rs.getString("descricao"));
             produto.setPrecoUnitario(rs.getDouble("precoUnitario"));
             produto.setQuantidadeDisponivel(rs.getInt("quantidadeDisponivel"));
         }
@@ -71,9 +71,9 @@ public class ProdutoDAO{
         return resultado;
     }
 
-    public static void get_id_produto(Produto produto) throws SQLException{
+    public static void get_id_produto(Produto produto) throws SQLException {
         String sql = "SELECT id_produto from produto WHERE codigoDoProduto = ? and descricao = ? and precoUnitario = ? and quantidadeDisponivel = ?";
-        
+
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, produto.getCodigoDoProduto());
         ps.setString(2, produto.getDescricao());
