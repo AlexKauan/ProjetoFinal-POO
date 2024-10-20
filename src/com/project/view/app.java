@@ -10,17 +10,15 @@ public class app {
         Scanner sc = new Scanner(System.in);
         ClienteView.sc = sc;
         BancoDeDados.iniciarConexao();
-        do {
-            System.out.println("\n Bem Vindo ao Sestema \n");
 
-            System.out.println("=======================================");
+        do {
+            System.out.println("\n========== Menu Principal ============\n");
             System.out.println("   1 - Menu do Cliente                 ");
             System.out.println("   2 - Menu da Compra                  ");
             System.out.println("   0 - Sair                            ");
             System.out.println("=======================================");
 
-            System.out.print("Opção ");
-            opcao = sc.nextInt();
+            opcao = obterOpcaoDoUsuario(sc, "Opção: ");
 
             switch (opcao) {
                 case 1:
@@ -30,13 +28,27 @@ public class app {
                 case 2:
                     CompraView.chamarMenuCompra();
                     break;
+                case 0:
+                    System.out.println("Saindo do sistema...");
+                    break;
                 default:
-                    System.out.println("Opção Invalida");
+                    System.out.println("Opção Inválida");
                     break;
             }
 
         } while (opcao != 0);
 
+        sc.close();
     }
 
+    private static int obterOpcaoDoUsuario(Scanner sc, String mensagem) {
+        System.out.print(mensagem);
+        String input = sc.nextLine();
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("Entrada inválida. Por favor, insira um número.");
+            return -1;
+        }
+    }
 }
