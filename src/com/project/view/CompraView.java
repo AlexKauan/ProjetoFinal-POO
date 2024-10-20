@@ -15,11 +15,10 @@ import java.util.Scanner;
 public class CompraView {
 
     public static void chamarMenuCompra() throws SQLException {
-        int opcao = 0;
+        int opcao = -1; // Inicializa a variável opcao com -1 para entrar no loop
         Scanner sc = new Scanner(System.in);
-        int menu = -1;
 
-        while (menu != 0) {
+        while (opcao != 0) { // Mantém o loop até que a opção 0 seja escolhida
             System.out.println("\n============ Menu de Compras ============\n");
             System.out.println("1 - Cadastrar Compra");
             System.out.println("2 - Mostrar Compra");
@@ -45,20 +44,32 @@ public class CompraView {
                     break;
                 case 0:
                     System.out.println("Voltando ao menu principal...");
-                    break;
+                    break; // Sai do loop e volta ao menu principal
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
+                    break;
             }
         }
     }
 
     private static void cadastrarCompra(Scanner sc) throws SQLException {
         Cliente cliente = (Cliente) Pessoa.getPessoaLogada();
+
+        if (cliente == null) {
+            System.out.println("Nenhum cliente logado. Faça login para continuar.");
+            return;
+        }
+
         System.out.print("Informe o Id do produto que deseja comprar: ");
         int idProduto = sc.nextInt();
         System.out.print("Informe a Quantidade do produto escolhido: ");
         int quantidadeComprada = sc.nextInt();
         Produto produto = ProdutoDao.pegar(idProduto);
+
+        if (produto == null) {
+            System.out.println("Produto não encontrado.");
+            return;
+        }
 
         String date = LocalDate.now().toString();
         String statusCompra = "Em aberto";
@@ -68,6 +79,8 @@ public class CompraView {
         ItemDeCompra itemDeCompra = new ItemDeCompra(compra.getIdCompra(),
                 produto.getPrecoUnitario() * quantidadeComprada, quantidadeComprada, produto);
         itemDeCompra.consultarItem();
+
+        System.out.println("Compra cadastrada com sucesso!");
     }
 
     private static void mostrarCompra(Scanner sc) {

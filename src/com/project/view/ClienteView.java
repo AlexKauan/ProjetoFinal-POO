@@ -20,6 +20,7 @@ public class ClienteView {
             System.out.println("5 - Excluir Cliente");
             System.out.println("0 - Voltar");
             System.out.println("=========================================\n");
+
             opcao = obterInteiroDoUsuario("Opção: ");
 
             switch (opcao) {
