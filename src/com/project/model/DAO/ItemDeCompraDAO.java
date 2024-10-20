@@ -17,9 +17,12 @@ public class ItemDeCompraDAO{
 
     public static ItemDeCompra pegar(int id) throws SQLException {
         ItemDeCompra item = null;
+       
         String sql = "SELECT id_Item_Compra, id_compra, id_produto, quantidadeComprada, precoDoItemDeCompra from itemDeCompra where id_Item_Compra = ?";
+
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, id);
+        
         Produto produto = null;
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
@@ -35,6 +38,7 @@ public class ItemDeCompraDAO{
         BancoDeDados.fecharPreparedStatement(ps);
         return item;
     }
+
 
     public static ArrayList<ItemDeCompra> pegarTodos(int id_compra) throws SQLException {
         ArrayList<ItemDeCompra> itens = new ArrayList<ItemDeCompra>();

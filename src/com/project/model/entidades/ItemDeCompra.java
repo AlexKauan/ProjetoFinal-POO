@@ -24,7 +24,14 @@ public class ItemDeCompra {
     }
 
       public static void criarItemDeCompra(int id_compra, double precoDoItemDeCompra, int quantidadeComprada, Produto produto) {
-        ItemDeCompraControle.cadastrarItemDeCompra( id_compra, precoDoItemDeCompra,  quantidadeComprada, produto);
+        ItemDeCompraControle.cadastrarItemDeCompra(id_compra, precoDoItemDeCompra,  quantidadeComprada, produto);
+    }
+
+    public void editarItem(double precoDoItemDeCompra, int quantidadeComprada) {
+        if (precoDoItemDeCompra != 0.0)
+            this.precoDoItemDeCompra = precoDoItemDeCompra;
+        if (quantidadeComprada >= 0)
+            this.quantidadeComprada = quantidadeComprada;
     }
 
     public int getId_item_compra() {
@@ -71,10 +78,11 @@ public class ItemDeCompra {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("ItemDeCompra{");
-        sb.append("quantidadeComprada=").append(quantidadeComprada);
-        sb.append(", precoDoItemDeCompra=").append(precoDoItemDeCompra);
-        sb.append('}');
+        sb.append("---------------------------\n");
+        sb.append("ItemDeCompra: \n");
+        sb.append("quantidadeComprada = ").append(quantidadeComprada);
+        sb.append("\n precoDoItemDeCompra = ").append(precoDoItemDeCompra);
+        sb.append("\n---------------------------\n");
         return sb.toString();
     }
 

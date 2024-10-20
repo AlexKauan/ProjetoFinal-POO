@@ -1,3 +1,7 @@
+select * from cliente
+order by id_cliente
+
+
 create table vendedor(
 	id_vendedor serial,
 	login varchar(50),
@@ -8,9 +12,11 @@ create table vendedor(
 	endereco varchar(50),
 	salario numeric(50,2),
 	numeroDeVendas int,
-	totalVendido (50,2),
+	totalVendido numeric(50,2),
 	primary key (id_vendedor)
 );
+
+select * from vendedor
 
 create table cliente(
 	id_cliente serial,
@@ -24,4 +30,52 @@ create table cliente(
 	totalcomprado numeric(50,2),
 	primary key (id_cliente)
 );
+
+
+
+select * from cliente
+order by id_cliente
+--drop table cliente
+
+create table compra(
+	id_compra serial,
+	id_cliente int,
+	data varchar(50),
+	statusCompra varchar(50),
+	primary key (id_compra),
+	foreign key (id_cliente) references cliente (id_cliente)
+);
+
+select * from compra
+--drop table compra
+
+create table itemDeCompra(
+    id_Item_Compra serial,
+	id_compra int,
+	id_produto int, 
+	quantidadeComprada int,
+	precoDoItemDeCompra numeric(50,2),
+	primary key (id_Item_Compra),
+	foreign key (id_compra) references compra (id_compra),
+	foreign key (id_produto) references produto (id_produto)
+);
+
+--drop table itemdecompra
+
+select * from itemDeCompra
+
+create table produto(
+	id_produto serial,
+	codigoDoProduto int,
+	descricao varchar(50),
+	precoUnitario numeric(50,2),
+	quantidadeDisponivel int,
+	primary key (id_produto)
+);
+
+select * from produto
+--drop table produto
+
+
+
 

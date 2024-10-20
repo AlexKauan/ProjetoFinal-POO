@@ -25,6 +25,15 @@ public class Produto {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
+    public void editarProduto(String descricao, double precoUnitario, int quantidadeDisponivel) {
+        if (descricao != null)
+            this.descricao = descricao;
+        if (precoUnitario != 0.0)
+            this.descricao = descricao;
+        if (quantidadeDisponivel >= 0)
+            this.quantidadeDisponivel = quantidadeDisponivel;
+    }
+
     public int getCodigoDoProduto() {
         return codigoDoProduto;
     }
@@ -75,13 +84,15 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" +
-                "id='" + getIdProduto() + '\'' +
-                ",Codigo do Produto='" + getCodigoDoProduto() + '\'' +
-                ",Descricao='" + getDescricao() + '\'' +
-                ", Preco Unitario='" + getPrecoUnitario() + '\'' +
-                ", Quantidade Disponivel='" + getQuantidadeDisponivel() + '\'' +
-                '}';
+
+        return "\nProdutos:" + '\n' 
+                + "----------------------------" + '\n' +
+                "id = " + getIdProduto() + '\n' +
+                "Codigo do Produto = " + getCodigoDoProduto() + '\n' +
+                "Descricao = " + getDescricao() + '\n' +
+                "Preco Unitario = " + getPrecoUnitario() + '\n' +
+                "Quantidade Disponivel = " + getQuantidadeDisponivel() + '\n'
+                + "----------------------------";
     }
 
     

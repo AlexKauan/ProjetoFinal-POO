@@ -46,6 +46,10 @@ public class Compra {
         }
     }
 
+    public void adicionarItem(ItemDeCompra item) {
+        this.itens.add(item);
+    }
+
     // Getters e Setters
     public int getIdCompra() {
         return idCompra;
@@ -93,11 +97,9 @@ public class Compra {
         return "Compra idCompra = " + idCompra
                 + "\n" + "cliente = " + cliente.getNome()
                 + "\n" + "Date = " + date
-                + "\n" + "Status da Compra = " + statusCompra 
-                + "\n" +"------------------------------"; 
-         
-                
+                + "\n" + "Status da Compra = " + statusCompra
+                + "\n" + "------------------------------";
+
     }
-    
 
 }

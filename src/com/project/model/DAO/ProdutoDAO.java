@@ -50,6 +50,8 @@ public class ProdutoDAO{
             produto.setDescricao(rs.getString("descricao"));       
             produto.setPrecoUnitario(rs.getDouble("precoUnitario"));
             produto.setQuantidadeDisponivel(rs.getInt("quantidadeDisponivel"));
+
+            produtos.add(produto);
         }
         BancoDeDados.fecharResultSet(rs);
         BancoDeDados.fecharPreparedStatement(ps);
@@ -57,14 +59,13 @@ public class ProdutoDAO{
     }
 
     public static int inserir(Produto produto) throws SQLException {
-        String sql = "INSERT INTO produto (id_produto, codigoDoProduto, descricao, precoUnitario, quantidadeDisponivel) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO produto (codigoDoProduto, descricao, precoUnitario, quantidadeDisponivel) VALUES (?, ?, ?, ?)";
 
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, produto.getIdProduto());
-        ps.setInt(2, produto.getCodigoDoProduto());
-        ps.setString(3, produto.getDescricao());
-        ps.setDouble(4, produto.getPrecoUnitario());
-        ps.setInt(5, produto.getQuantidadeDisponivel());
+        ps.setInt(1, produto.getCodigoDoProduto());
+        ps.setString(2, produto.getDescricao());
+        ps.setDouble(3, produto.getPrecoUnitario());
+        ps.setInt(4, produto.getQuantidadeDisponivel());
 
         int resultado = ps.executeUpdate();
         BancoDeDados.fecharPreparedStatement(ps);

@@ -1,93 +1,179 @@
 package com.project.controller;
 
+
 import com.project.model.DAO.VendedorDAO;
 import com.project.model.entidades.Vendedor;
 import com.project.view.VendedorView;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VendedorControle {
     private Vendedor vendedor;
-    private  VendedorView vendedorView;
+    private VendedorView vendedorView;
 
-     // Construtor
+    // Construtor
     public VendedorControle(Vendedor vendedor, VendedorView vendedorView) {
         this.vendedor = vendedor;
         this.vendedorView = vendedorView;
     }
 
-    public void atualizariId(int novoId) {
-        vendedor.setId(novoId);
-        System.out.println("Id atualizado com sucesso!");
-    }
-
-    public void atualizarNome(String novoNome) {
-        vendedor.setNome(novoNome);
-        System.out.println("Nome atualizado com sucesso!");
-    }
-
-    public void atualizarLogin(String novoLogin) {
-        vendedor.setLogin(novoLogin);
-        System.out.println("Login atualizado com sucesso!");
-    }
-
-    public void atualizarSenha(String novoSenha) {
-        vendedor.setSenha(novoSenha);
-        System.out.println("Senha atualizado com sucesso!");
-    }
-
-    public void atualizarTelefone(String novoTelefone) {
-        vendedor.setTelefone(novoTelefone);
-        System.out.println("Telefone atualizado com sucesso!");
-    }
-
-    public void atualizarEmail(String novoEmail) {
-        vendedor.setEmail(novoEmail);
-        System.out.println("Email atualizado com sucesso!");
-    }
-
-    public void atualizarEndereco(String novoEndereco) {
-        vendedor.setEndereco(novoEndereco);
-        System.out.println("Endereço atualizado com sucesso!");
-    }
-
-    public void atualizarSalario(Double novosalario) {
-        vendedor.setSalario(novosalario);
-        System.out.println("Salario atualizado com sucesso!");
-    }
-
-    public void atualizarNumeroDeVendas(int novoNumeroDeVendas) {
-        vendedor.setNumeroDeVendas(novoNumeroDeVendas);
-        System.out.println("Salario atualizado com sucesso!");
-    }
-
-    public void atualizarTotalVendido(Double novoTotalVendido) {
-        vendedor.setTotalVendido(novoTotalVendido);
-        System.out.println("Salario atualizado com sucesso!");
-    }
-
-    public void exibirInformacoes() {
-        vendedorView.printInformacoes(this.vendedor);
-    }
-
-    public void salvar(){
+    public static void cadastraVendedor(double salario, int numeroDeVendas, double totalVendido, String login,
+            String senha,
+            String nome, String telefone, String email, String endereco) {
+        Vendedor vendedor = Vendedor.criarVendedor(salario, numeroDeVendas, totalVendido, login, senha, nome, telefone,
+                email, endereco);
         try {
-            VendedorDAO.salvar(this.vendedor);
-            System.out.println("Cliente Salvo Com sucesso!!!");
+            VendedorDAO.salvar(vendedor);
+            System.out.println("\nCLiente cadastrado com sucesso\n");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            System.out.println("Cliente Não Salvo!!!");
+            System.out.println("Erro ao criar o Cliente");
         }
     }
 
-    public void deletar(){
+    public static void atualizarVendedor(int idVendedor, double salario, int numeroDeVendas, double totalVendido,
+            String login, String senha,
+            String nome, String telefone, String email, String endereco) {
         try {
-            VendedorDAO.deletar(this.vendedor);
-            System.out.println("Cliente Deletado Com sucesso!!!");
+            Vendedor vendedor = VendedorDAO.pegar(idVendedor);
+            if (vendedor == null) {
+                System.out.println("Esse Vendedor não existe\n");
+            } else {
+                vendedor.editarVendedor(salario, numeroDeVendas, totalVendido, login, senha,
+                        nome, telefone, email, endereco);
+                VendedorDAO.salvar(vendedor);
+                System.out.println("\nVendeodr editado com sucesso\n");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao editar o Cliente");
+        }
+    }
+
+    public static void mostrarVendedor(int idVendedor) {
+        Vendedor vendedor;
+        try {
+            vendedor = VendedorDAO.pegar(idVendedor);
+            if (vendedor == null) {
+                System.out.println("Esse vendedor não existe\n");
+            } else {
+                System.out.println("\nInformações do vendedor:\n");
+                System.out.println(vendedor);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao visualizar o Vendedor");
+        }
+    }
+
+    public static void editarVendedor(int idVendedor, String nome, String endereco, String telefone, String senha) {
+        try {
+            Vendedor vendedor = VendedorDAO.pegar(idVendedor);
+            if (vendedor == null) {
+                System.out.println("Esse cliente não existe\n");
+            } else {
+                vendedor.editarVendedor(nome, endereco, telefone, senha);
+             VendedorDAO.salvar(vendedor);
+                System.out.println("\n Vendedor editado com sucesso\n");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao editar o Vendedor");
+        }
+    }
+
+    public static void listarVendedores() {
+        try {
+            ArrayList<Vendedor>  vendedores = VendedorDAO.pegarTodos();
+            if (vendedores.size() == 0) {
+                System.out.println("Ainda não há vendedores no sistema\n");
+            } else {
+                for (Vendedor vendedor : vendedores)
+                    System.out.println(vendedor);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao Listar os vendedores");
+        }
+
+    }
+
+    public void removerCliente(List<Vendedor> vendedores) {
+        vendedores.remove(this);
+    }
+
+    public static void logarVendedor(String login, String senha) {
+
+        Vendedor vendedor;
+        boolean esta_logado;
+        try {
+            vendedor = VendedorDAO.pegar_por_login(login);
+            if (vendedor != null) {
+                esta_logado = vendedor.logarPessoa(login, senha);
+                if (esta_logado) {
+                    System.out.println("Vendedor logado com sucesso!!!");
+                } else {
+                    System.out.println("Senha incorreta!");
+
+                }
+            } else {
+                System.out.println("Login incorreto");
+            }
+
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            System.out.println("Cliente Não Deletado Com sucesso!!!");
+        }
+
+    }
+
+    public static void removerVendedor(int idVendedor) {
+        try {
+            Vendedor vendedor = VendedorDAO.pegar(idVendedor);
+            if (vendedor == null) {
+                System.out.println("Esse cliente não existe\n");
+            } else {
+                VendedorDAO.deletar(vendedor);
+                System.out.println("\n Vendedor deletado com sucesso\n");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao deletar o Vendedor");
+        }
+    }
+
+    public static Vendedor buscarVendedor(int idVendedor) {
+        Vendedor vendedor;
+        try {
+            vendedor = VendedorDAO.pegar(idVendedor);
+            if (vendedor == null) {
+                System.out.println("Esse vendedor não existe\n");
+                return vendedor;
+            } else {
+                return vendedor;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar um vendedor");
+            return null;
+        }
+    }
+
+
+
+    public void salvar() {
+        try {
+            VendedorDAO.salvar(this.vendedor);
+            System.out.println("Vendedor Salvo Com sucesso!!!");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.out.println("Vendedor Não Salvo!!!");
+        }
+    }
+
+    public void deletar() {
+        try {
+            VendedorDAO.deletar(this.vendedor);
+            System.out.println("Vendedor Deletado Com sucesso!!!");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.out.println("Vendedor Não Deletado Com sucesso!!!");
         }
     }
 
@@ -107,5 +193,4 @@ public class VendedorControle {
         this.vendedorView = vendedorView;
     }
 
-    
 }

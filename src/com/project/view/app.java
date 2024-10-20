@@ -15,7 +15,10 @@ public class app {
 
             System.out.println("=======================================");
             System.out.println("   1 - Menu do Cliente                 ");
-            System.out.println("   2 - Menu da Compra                  ");
+            System.out.println("   2 - Menu da Vendedor                ");
+            System.out.println("   3 - Menu da Compra                  ");
+            System.out.println("   4 - Menu do Item de Compra          ");
+            System.out.println("   5 - Menu do Produto                 ");
             System.out.println("   0 - Sair                            ");
             System.out.println("=======================================");
 
@@ -28,7 +31,18 @@ public class app {
                     break;
 
                 case 2:
+                    VendedorView.chamarMenuVendedor();
+                    break;
+
+                case 3:
                     CompraView.chamarMenuCompra();
+                    break;
+                case 4:
+                    ItemDeCompraView.chamarMenuItemDeCompra();
+                    break;
+                    
+                case 5:
+                    ProdutoView.chamarMenuProduto();
                     break;
                 default:
                     System.out.println("Opção Invalida");

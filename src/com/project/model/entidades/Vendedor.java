@@ -27,6 +27,40 @@ public class Vendedor extends Pessoa {
         this.totalVendido = totalVendido;
     }
 
+    public static Vendedor criarVendedor(double salario, int numeroDeVendas, double totalVendido, String login, String senha,
+    String nome,String telefone, String email, String endereco){
+         return new Vendedor(salario, numeroDeVendas, totalVendido, login, senha,
+         nome, telefone, email, endereco);
+    }
+
+    public void editarVendedor(double salario, int numeroDeVendas, double totalVendido, String login, String senha,
+    String nome,String telefone, String email, String endereco){
+        if(nome!=null){
+            setNome(nome);
+        }
+        if(login!=null){
+            setLogin(login);
+        }
+        if(senha!=null){
+            setSenha(senha);
+        }
+        if(telefone!=null){
+            setTelefone(telefone);
+        }
+        if(email!=null){
+            setEmail(email);;
+        }
+        if(endereco!=null){
+            setEndereco(endereco);
+        }
+        if(numeroDeVendas!=0){
+            setNumeroDeVendas(numeroDeVendas);
+        }
+        if(totalVendido!=0){
+            setTotalVendido(totalVendido);
+        }
+    }
+
     public double getSalario() {
         return salario;
     }

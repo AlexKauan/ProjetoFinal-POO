@@ -147,4 +147,30 @@ public class VendedorDAO {
         return resultado;
     }
 
+
+    public static Vendedor pegar_por_login(String login) throws SQLException {
+        Vendedor vendedor = null;
+        String sql = "SELECT id_vendedor, login, senha, nome, telefone, email, endereco, salario, numeroDeVendas, totalVendido from vendedor where login = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, login);
+
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            vendedor = new Vendedor();
+            vendedor.setId(rs.getInt("id_vendedor"));
+            vendedor.setLogin(rs.getString("login"));
+            vendedor.setSenha(rs.getString("senha"));
+            vendedor.setNome(rs.getString("nome")); 
+            vendedor.setTelefone(rs.getString("telefone"));
+            vendedor.setEmail(rs.getString("email"));
+            vendedor.setEndereco(rs.getString("endereco"));       
+            vendedor.setSalario(rs.getDouble("salario"));
+            vendedor.setNumeroDeVendas(rs.getInt("numeroDeVendas"));
+            vendedor.setTotalVendido(rs.getDouble("totalVendido"));   
+        }
+        BancoDeDados.fecharResultSet(rs);
+        BancoDeDados.fecharPreparedStatement(ps);
+        return vendedor;
+    }
+
 }
