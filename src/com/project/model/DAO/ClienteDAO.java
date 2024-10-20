@@ -148,11 +148,11 @@ public class ClienteDao {
 
     public static Cliente pegar_por_login(String login) throws SQLException {
         Cliente cliente = null;
-        String sql = "SELECT id_cliente, login, senha, nome, telefone, email, endereco, numero_de_compras, totalComprado from cliente where login = ?";
+        String sql = "SELECT * FROM cliente WHERE login = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, login);
-
         ResultSet rs = ps.executeQuery();
+    
         if (rs.next()) {
             cliente = new Cliente();
             cliente.setId(rs.getInt("id_cliente"));
@@ -165,8 +165,10 @@ public class ClienteDao {
             cliente.setNumeroDeCompras(rs.getInt("numero_de_compras"));
             cliente.setTotalComprado(rs.getDouble("totalComprado"));
         }
+    
         BancoDeDados.fecharResultSet(rs);
         BancoDeDados.fecharPreparedStatement(ps);
+    
         return cliente;
     }
 }

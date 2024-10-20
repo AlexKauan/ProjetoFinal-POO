@@ -6,52 +6,57 @@ public class Cliente extends Pessoa {
     private double totalComprado;
 
     public Cliente() {
-       super();
+        super();
     }
 
     public Cliente(int id, String login, String senha, String nome,
-        String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
+            String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
         super(id, login, senha, nome, telefone, email, endereco);
         this.numeroDeCompras = numeroDeCompras;
         this.totalComprado = totalComprado;
     }
 
     public Cliente(String login, String senha, String nome,
-        String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
+            String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
         super(login, senha, nome, telefone, email, endereco);
         this.numeroDeCompras = numeroDeCompras;
         this.totalComprado = totalComprado;
     }
 
+    public boolean logarCliente(String login, String senha) {
+        return logarPessoa(login, senha);
+    }
+
     public static Cliente criarCliente(String login, String senha, String nome,
-    String telefone, String email, String endereco, int numeroDeCompras, double totalComprado){
-         return new Cliente(login,senha,nome,telefone,email,endereco,numeroDeCompras,totalComprado);
+            String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
+        return new Cliente(login, senha, nome, telefone, email, endereco, numeroDeCompras, totalComprado);
     }
 
     public void editarPessoa(String login, String senha, String nome,
-    String telefone, String email, String endereco, int numeroDeCompras, double totalComprado){
-        if(nome!=null){
+            String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
+        if (nome != null) {
             setNome(nome);
         }
-        if(login!=null){
+        if (login != null) {
             setLogin(login);
         }
-        if(senha!=null){
+        if (senha != null) {
             setSenha(senha);
         }
-        if(telefone!=null){
+        if (telefone != null) {
             setTelefone(telefone);
         }
-        if(email!=null){
-            setEmail(email);;
+        if (email != null) {
+            setEmail(email);
+            ;
         }
-        if(endereco!=null){
+        if (endereco != null) {
             setEndereco(endereco);
         }
-        if(numeroDeCompras!=0){
+        if (numeroDeCompras != 0) {
             setNumeroDeCompras(numeroDeCompras);
         }
-        if(totalComprado!=0){
+        if (totalComprado != 0) {
             setTotalComprado(totalComprado);
         }
     }
