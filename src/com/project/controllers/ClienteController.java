@@ -25,16 +25,14 @@ public class ClienteController {
     }
 
     // Cadastro de Cliente
-    public static void cadastraCliente(String login, String senha, String nome, String telefone, String email,
-            String endereco, int numeroDeCompras, double totalComprado) {
-        Cliente cliente = Cliente.criarCliente(login, senha, nome, telefone, email, endereco, numeroDeCompras,
-                totalComprado);
+    public static void cadastraCliente(Cliente cliente) throws SQLException {
         try {
-            ClienteDao.salvar(cliente);
-            System.out.println("\nCliente cadastrado com sucesso\n");
+            ClienteDao.salvar(cliente); // Método que realiza a inserção no banco de dados
+            // System.out.println("\nCliente cadastrado com sucesso\n");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Erro ao criar o Cliente: " + e.getMessage());
+            // System.out.println("Erro ao criar o Cliente: " + e.getMessage());
+            throw e; // Lança exceção para ser tratada no App
         }
     }
 
@@ -67,6 +65,16 @@ public class ClienteController {
             }
         } catch (SQLException e) {
             System.out.println("Erro ao visualizar o Cliente: " + e.getMessage());
+        }
+    }
+
+    public static Cliente buscarCliente(int idCliente) {
+        try {
+            // Usa o DAO para buscar o cliente pelo ID no banco de dados
+            return ClienteDao.pegar(idCliente);
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar cliente: " + e.getMessage());
+            return null;
         }
     }
 

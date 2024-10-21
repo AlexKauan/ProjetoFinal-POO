@@ -56,11 +56,17 @@ public class ClienteView {
         String telefone = obterStringDoUsuario("Telefone: ");
         String email = obterStringDoUsuario("Email: ");
         String endereco = obterStringDoUsuario("Endereço: ");
-        int numeroDeCompras = obterInteiroDoUsuario("Número de Compras: ");
-        double totalComprado = obterDoubleDoUsuario("Total Comprado: ");
 
-        ClienteController.cadastraCliente(login, senha, nome, telefone, email, endereco, numeroDeCompras,
-                totalComprado);
+        // Cria um objeto Cliente com os dados fornecidos
+        Cliente cliente = new Cliente(login, senha, nome, telefone, email, endereco, 0, 0.0);
+
+        // Chama o método do controlador passando o objeto Cliente
+        try {
+            ClienteController.cadastraCliente(cliente);
+            System.out.println("Cliente cadastrado com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar o cliente: " + e.getMessage());
+        }
     }
 
     private static void editarCliente() {

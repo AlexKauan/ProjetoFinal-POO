@@ -1,8 +1,12 @@
 package com.project.view;
 
+import com.project.controllers.ClienteController;
 import com.project.controllers.PessoaController;
+import com.project.controllers.VendedorController;
 import com.project.model.dao.BancoDeDados;
+import com.project.model.entidades.Cliente;
 import com.project.model.entidades.Pessoa;
+import com.project.model.entidades.Vendedor;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -22,16 +26,22 @@ public class App {
                 case 1:
                     // Login de Cliente
                     if (login(sc, "Cliente")) {
-                        // Exibe o menu principal após login de cliente
                         exibirMenuPrincipal("Cliente", sc);
                     }
                     break;
                 case 2:
                     // Login de Vendedor
                     if (login(sc, "Vendedor")) {
-                        // Exibe o menu principal após login de vendedor
                         exibirMenuPrincipal("Vendedor", sc);
                     }
+                    break;
+                case 3:
+                    // Cadastro de Cliente
+                    cadastrarCliente(sc);
+                    break;
+                case 4:
+                    // Cadastro de Vendedor
+                    cadastrarVendedor(sc);
                     break;
                 case 0:
                     System.out.println("Saindo do sistema...");
@@ -45,11 +55,13 @@ public class App {
 
     // Método para exibir o menu inicial de escolha do tipo de login
     private static void exibirMenuInicial() {
-        System.out.println("\n========== Escolha o Tipo de Login ============\n");
+        System.out.println("\n========== Escolha o Tipo de Login ou Cadastro ============\n");
         System.out.println("1 - Logar como Cliente");
         System.out.println("2 - Logar como Vendedor");
+        System.out.println("3 - Cadastrar Cliente");
+        System.out.println("4 - Cadastrar Vendedor");
         System.out.println("0 - Sair");
-        System.out.println("===============================================");
+        System.out.println("==========================================================");
     }
 
     // Método para exibir o menu principal com base no tipo de usuário logado
@@ -103,6 +115,64 @@ public class App {
             System.out.println("Login ou senha inválidos.");
             return false;
         }
+    }
+
+    // Método para cadastrar um novo cliente
+    private static void cadastrarCliente(Scanner sc) {
+        System.out.println("\n========== Cadastro de Cliente ===========");
+        System.out.print("Login: ");
+        String login = sc.nextLine();
+        System.out.print("Senha: ");
+        String senha = sc.nextLine();
+        System.out.print("Nome: ");
+        String nome = sc.nextLine();
+        System.out.print("Telefone: ");
+        String telefone = sc.nextLine();
+        System.out.print("Email: ");
+        String email = sc.nextLine();
+        System.out.print("Endereço: ");
+        String endereco = sc.nextLine();
+        int numeroDeCompras = 0; // Inicialize com valores padrão
+        double totalComprado = 0.0;
+
+        Cliente cliente = new Cliente(login, senha, nome, telefone, email, endereco, numeroDeCompras, totalComprado);
+
+        try {
+            ClienteController.cadastraCliente(cliente);
+            System.out.println("\nCliente cadastrado com sucesso!");
+        } catch (SQLException e) {
+            System.out.println("Erro ao cadastrar o cliente: " + e.getMessage());
+        }
+    }
+
+    // Método para cadastrar um novo vendedor
+    private static void cadastrarVendedor(Scanner sc) {
+        System.out.println("\n========== Cadastro de Vendedor ===========");
+        System.out.print("Login: ");
+        String login = sc.nextLine();
+        System.out.print("Senha: ");
+        String senha = sc.nextLine();
+        System.out.print("Nome: ");
+        String nome = sc.nextLine();
+        System.out.print("Telefone: ");
+        String telefone = sc.nextLine();
+        System.out.print("Email: ");
+        String email = sc.nextLine();
+        System.out.print("Endereço: ");
+        String endereco = sc.nextLine();
+        System.out.print("Salário: ");
+        double salario = sc.nextDouble();
+        System.out.print("Número de Vendas: ");
+        int numeroDeVendas = sc.nextInt();
+        sc.nextLine(); // Limpar o buffer
+
+        // Criar o objeto Vendedor com o construtor adequado
+        Vendedor vendedor = new Vendedor(salario, numeroDeVendas, 0, login, senha, nome, telefone, email, endereco);
+
+        // Usar o VendedorController para cadastrar o novo vendedor
+        VendedorController.cadastrarVendedor(vendedor);
+
+        System.out.println("Vendedor cadastrado com sucesso!");
     }
 
     // Método para capturar a opção do usuário

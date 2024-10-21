@@ -66,9 +66,7 @@ public class ClienteDao {
     }
 
     public static int inserir(Cliente cliente) throws SQLException {
-        System.out.println("Tentando inserir cliente com dados: " + cliente);
         String sql = "INSERT INTO cliente (login, senha, nome, telefone, email, endereco, numero_de_compras, totalComprado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, cliente.getLogin());
         ps.setString(2, cliente.getSenha());
@@ -78,8 +76,6 @@ public class ClienteDao {
         ps.setString(6, cliente.getEndereco());
         ps.setInt(7, cliente.getNumeroDeCompras());
         ps.setDouble(8, cliente.getTotalComprado());
-
-        System.out.println("Executando query: " + ps);
 
         int resultado = ps.executeUpdate();
         BancoDeDados.fecharPreparedStatement(ps);
@@ -147,12 +143,14 @@ public class ClienteDao {
     }
 
     public static Cliente pegar_por_login(String login) throws SQLException {
+        System.out.println("Tentando buscar cliente com login: " + login);
+
         Cliente cliente = null;
         String sql = "SELECT * FROM cliente WHERE login = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, login);
         ResultSet rs = ps.executeQuery();
-    
+
         if (rs.next()) {
             cliente = new Cliente();
             cliente.setId(rs.getInt("id_cliente"));
@@ -164,11 +162,14 @@ public class ClienteDao {
             cliente.setEndereco(rs.getString("endereco"));
             cliente.setNumeroDeCompras(rs.getInt("numero_de_compras"));
             cliente.setTotalComprado(rs.getDouble("totalComprado"));
+        } else {
+            System.out.println("Nenhum cliente encontrado com o login: " + login);
         }
-    
+
         BancoDeDados.fecharResultSet(rs);
         BancoDeDados.fecharPreparedStatement(ps);
-    
+
         return cliente;
     }
+
 }
