@@ -13,10 +13,10 @@ public class ItemDeCompraView {
         Scanner sc = new Scanner(System.in);
 
         int menu = -1;
-        int id_compra = 0;
-        int quantidadeComprada = 0;
-        double precoDoItemDeCompra = 0.0;
-        Produto produto;
+        // int id_compra = 0;
+        // int quantidadeComprada = 0;
+        // double precoDoItemDeCompra = 0.0;
+        // Produto produto;
 
         while (menu != 0) {
 

@@ -16,11 +16,15 @@ public class ItemDeCompra {
         this.id_item_compra = id_item_compra;
         this.quantidadeComprada = quantidadeComprada;
         this.precoDoItemDeCompra = precoDoItemDeCompra;
+        this.produto = produto;
+        this.id_compra = id_compra;
     }
 
     public ItemDeCompra(int id_compra, double precoDoItemDeCompra, int quantidadeComprada, Produto produto) {
         this.precoDoItemDeCompra = precoDoItemDeCompra;
         this.quantidadeComprada = quantidadeComprada;
+        this.produto = produto;
+        this.id_compra = id_compra;
     }
 
       public static void criarItemDeCompra(int id_compra, double precoDoItemDeCompra, int quantidadeComprada, Produto produto) {
@@ -80,8 +84,9 @@ public class ItemDeCompra {
         StringBuilder sb = new StringBuilder();
         sb.append("---------------------------\n");
         sb.append("ItemDeCompra: \n");
-        sb.append("quantidadeComprada = ").append(quantidadeComprada);
-        sb.append("\n precoDoItemDeCompra = ").append(precoDoItemDeCompra);
+        sb.append("Id: ").append(id_item_compra);
+        sb.append("\nquantidadeComprada = ").append(quantidadeComprada);
+        sb.append("\nprecoDoItemDeCompra = ").append(precoDoItemDeCompra);
         sb.append("\n---------------------------\n");
         return sb.toString();
     }

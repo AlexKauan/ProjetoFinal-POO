@@ -5,12 +5,14 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import com.project.controller.CompraControle;
+import com.project.controller.ProdutoControle;
 import com.project.model.DAO.ClienteDAO;
+import com.project.model.DAO.CompraDAO;
+import com.project.model.DAO.ItemDeCompraDAO;
 import com.project.model.DAO.ProdutoDAO;
 import com.project.model.entidades.Cliente;
 import com.project.model.entidades.Compra;
 import com.project.model.entidades.ItemDeCompra;
-import com.project.model.entidades.Pessoa;
 import com.project.model.entidades.Produto;
 
 public class CompraView {
@@ -22,7 +24,6 @@ public class CompraView {
         int menu = -1;
         String date = LocalDate.now().toString();
         String statusCompra = "Em aberto";
-        int idCliente = 0;
         int idCompra = 0;
         int idProduto = 0;
         int quantidadeComprada = 0;
@@ -41,21 +42,8 @@ public class CompraView {
 
             switch (opcao) {
                 case 1:
-                    // ProdutoView.chamarMenuProduto();
-                     Produto produto1 = new Produto(1, "Agua", 2.50, 10);
-                     ProdutoDAO.salvar(produto1);
-                     Cliente cliente = (Cliente) Pessoa.getPessoaLogada();
-                    // sc.nextLine();
-                    // System.out.print("Informe a Data ");
-                    // date = sc.nextLine();
-                    // System.out.print("Informe o Status da Compra ");
-                    // statusCompra = sc.nextLine();
-                    // sc.nextLine();
-
-                    // Listar Produto
-                    for (Produto produto2 : ProdutoDAO.pegarTodos()) {
-                    System.out.println(produto2);
-                    }
+                
+                    ProdutoControle.listarProdutos();
 
                     System.out.print("Informe o Id do produto que deseja compra: ");
                     idProduto = sc.nextInt();
@@ -63,25 +51,16 @@ public class CompraView {
                     quantidadeComprada = sc.nextInt();
                     Produto produto = ProdutoDAO.pegar(idProduto);
 
-                    // Compra.criarCompra(cliente.getId(), date, statusCompra);
                     Cliente cliente2 = ClienteDAO.pegar(1);
                     Compra compra = new Compra(cliente2, date, statusCompra);
-                    // CompraDAO.salvar(compra);
-                    // CompraDAO.salvar(compra);
+                    CompraDAO.salvar(compra);
+            
                     ItemDeCompra itemDeCompra = new ItemDeCompra(compra.getIdCompra(),
                     produto.getPrecoUnitario() * quantidadeComprada, quantidadeComprada,
                     produto);
-                    // ItemDeCompraDAO.salvar(itemDeCompra);
+                    ItemDeCompraDAO.salvar(itemDeCompra);
                     // itemDeCompra.
-                    compra.adicionarItem(itemDeCompra);
-                    
-                    System.out.println(itemDeCompra);
-                    System.out.println(compra);
-
-                    
-                    // TODO Auto-generated catch block
-
-                    // Salva compra para pega seu id e adicionar em item de compra
+                    compra.adicionarItem(itemDeCompra);        
 
                     break;
                 case 2:

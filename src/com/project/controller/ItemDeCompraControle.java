@@ -1,7 +1,6 @@
 package com.project.controller;
 
 import com.project.model.DAO.ItemDeCompraDAO;
-import com.project.model.DAO.ProdutoDAO;
 import com.project.model.entidades.ItemDeCompra;
 import com.project.model.entidades.Produto;
 import com.project.view.ItemDeCompraView;
@@ -30,7 +29,7 @@ public class ItemDeCompraControle {
 
     public static void listarItemDeCompra() {
         try {
-            ArrayList<ItemDeCompra> itens = ItemDeCompraDAO.pegarTodos(0);
+            ArrayList<ItemDeCompra> itens = ItemDeCompraDAO.pegarTodos();
             if (itens.size() == 0) {
                 System.out.println("Não há produtos para listar");
                 return;

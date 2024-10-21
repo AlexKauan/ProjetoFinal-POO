@@ -63,8 +63,30 @@ public class ItemDeCompraDAO{
         return itens;
     }
 
+    public static ArrayList<ItemDeCompra> pegarTodos() throws SQLException {
+        ArrayList<ItemDeCompra> itens = new ArrayList<ItemDeCompra>();
+        ItemDeCompra item = null;
+        String sql = "SELECT id_Item_Compra, id_produto, quantidadeComprada, precoDoItemDeCompra from itemDeCompra";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        Produto produto = null;
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            item = new ItemDeCompra();
+            produto = ProdutoDAO.pegar(rs.getInt("id_produto"));
+            item.setProduto(produto);
+            item.setId_item_compra(rs.getInt("id_Item_Compra"));
+            item.setQuantidadeComprada(rs.getInt("quantidadeComprada"));       
+            item.setPrecoDoItemDeCompra(rs.getDouble("precoDoItemDeCompra"));      
+            itens.add(item);
+        }
+        BancoDeDados.fecharResultSet(rs);
+        BancoDeDados.fecharPreparedStatement(ps);
+        return itens;
+    }
+
     public static int inserir(ItemDeCompra item) throws SQLException {
-        String sql = "INSERT INTO itemDeCompra (id_produto, id_compra, quantidadeComprada, precoDoItemDeCompra) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO itemDeCompra (id_produto, id_compra, quantidadeComprada, precoDoItemDeCompra) VALUES (?, ?, ?, ?)";
 
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, item.getProduto().getIdProduto());
@@ -99,10 +121,11 @@ public class ItemDeCompraDAO{
     public static int atualizar(ItemDeCompra item) throws SQLException {
         String sql = "UPDATE itemDeCompra set id_compra = ?, id_produto = ?, quantidadeComprada = ?, precoDoItemDeCompra = ? WHERE id_Item_Compra = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, item.getProduto().getIdProduto());
-        ps.setInt(2, item.getId_compra());
+        ps.setInt(1, item.getId_compra());
+        ps.setInt(2, item.getProduto().getIdProduto());
         ps.setInt(3, item.getQuantidadeComprada());
         ps.setDouble(4, item.getPrecoDoItemDeCompra());
+        ps.setInt(5, item.getId_item_compra());
         
 
         int resultado = ps.executeUpdate();
@@ -113,8 +136,10 @@ public class ItemDeCompraDAO{
     public static void salvar(ItemDeCompra item) throws SQLException {
         if (item.getId_item_compra() != 0)
             atualizar(item);
-        else
+        else{
             inserir(item);
+            get_id_Itm_compra(item);
+        }
     }
 
     public static int deletar(ItemDeCompra item) throws SQLException {

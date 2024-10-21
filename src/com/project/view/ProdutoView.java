@@ -13,7 +13,6 @@ public class ProdutoView {
 
         Scanner sc = new Scanner(System.in);
 
-        int idProduto = 0;
         int codigoDoProduto = 0;
         String descricao = "";
         double precoUnitario = 0.0;
