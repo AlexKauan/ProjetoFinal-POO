@@ -1,6 +1,6 @@
 package com.project.controllers;
 
-import com.project.model.DAO.ItemDeCompraDAO;
+import com.project.model.dao.ItemDeCompraDao;
 import com.project.model.entidades.ItemDeCompra;
 import com.project.model.entidades.Produto;
 import com.project.view.ItemDeCompraView;
@@ -20,7 +20,7 @@ public class ItemDeCompraController {
             Produto produto) {
         ItemDeCompra itemDeCompra = new ItemDeCompra(idcompra, precoDoItemDeCompra, quantidadeComprada, produto);
         try {
-            ItemDeCompraDAO.salvar(itemDeCompra);
+            ItemDeCompraDao.salvar(itemDeCompra);
             System.out.println("\nItem de Compra cadastrado com sucesso\n");
         } catch (SQLException e) {
             System.out.println("Erro ao criar o Compra");
@@ -29,7 +29,7 @@ public class ItemDeCompraController {
 
     public void salvar() {
         try {
-            ItemDeCompraDAO.salvar(this.itemDeCompra);
+            ItemDeCompraDao.salvar(this.itemDeCompra);
             System.out.println("Cliente Salvo Com sucesso!!!");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -40,7 +40,7 @@ public class ItemDeCompraController {
 
     public void deletar() {
         try {
-            ItemDeCompraDAO.deletar(this.itemDeCompra);
+            ItemDeCompraDao.deletar(this.itemDeCompra);
             System.out.println("Cliente Deletado Com sucesso!!!");
         } catch (SQLException e) {
             // TODO Auto-generated catch block

@@ -1,6 +1,6 @@
 package com.project.controllers;
 
-import com.project.model.DAO.VendedorDAO;
+import com.project.model.dao.VendedorDao;
 import com.project.model.entidades.Vendedor;
 import com.project.view.VendedorView;
 import java.sql.SQLException;
@@ -30,9 +30,9 @@ public class VendedorController {
         System.out.println("Login atualizado com sucesso!");
     }
 
-    public void atualizarSenha(String novoSenha) {
-        vendedor.setSenha(novoSenha);
-        System.out.println("Senha atualizado com sucesso!");
+    public void atualizarSenha(String novaSenha) {
+        vendedor.setSenha(novaSenha);
+        System.out.println("Senha atualizada com sucesso!");
     }
 
     public void atualizarTelefone(String novoTelefone) {
@@ -50,19 +50,19 @@ public class VendedorController {
         System.out.println("Endereço atualizado com sucesso!");
     }
 
-    public void atualizarSalario(Double novosalario) {
-        vendedor.setSalario(novosalario);
-        System.out.println("Salario atualizado com sucesso!");
+    public void atualizarSalario(Double novoSalario) {
+        vendedor.setSalario(novoSalario);
+        System.out.println("Salário atualizado com sucesso!");
     }
 
     public void atualizarNumeroDeVendas(int novoNumeroDeVendas) {
         vendedor.setNumeroDeVendas(novoNumeroDeVendas);
-        System.out.println("Salario atualizado com sucesso!");
+        System.out.println("Número de vendas atualizado com sucesso!");
     }
 
     public void atualizarTotalVendido(Double novoTotalVendido) {
         vendedor.setTotalVendido(novoTotalVendido);
-        System.out.println("Salario atualizado com sucesso!");
+        System.out.println("Total vendido atualizado com sucesso!");
     }
 
     public void exibirInformacoes() {
@@ -71,23 +71,21 @@ public class VendedorController {
 
     public void salvar() {
         try {
-            VendedorDAO.salvar(this.vendedor);
-            System.out.println("Cliente Salvo Com sucesso!!!");
+            VendedorDao.salvar(this.vendedor);
+            System.out.println("Vendedor salvo com sucesso!");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-            System.out.println("Cliente Não Salvo!!!");
+            System.out.println("Erro ao salvar vendedor!");
         }
     }
 
     public void deletar() {
         try {
-            VendedorDAO.deletar(this.vendedor);
-            System.out.println("Cliente Deletado Com sucesso!!!");
+            VendedorDao.deletar(this.vendedor);
+            System.out.println("Vendedor deletado com sucesso!");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-            System.out.println("Cliente Não Deletado Com sucesso!!!");
+            System.out.println("Erro ao deletar vendedor!");
         }
     }
 
@@ -107,4 +105,13 @@ public class VendedorController {
         this.vendedorView = vendedorView;
     }
 
+    // Método para cadastrar um novo vendedor
+    public static void cadastrarVendedor(Vendedor vendedor) {
+        try {
+            VendedorDao.salvar(vendedor);
+            System.out.println("Vendedor cadastrado com sucesso!");
+        } catch (SQLException e) {
+            System.out.println("Erro ao cadastrar o vendedor: " + e.getMessage());
+        }
+    }
 }

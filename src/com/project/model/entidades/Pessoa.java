@@ -14,7 +14,8 @@ public abstract class Pessoa {
     private String endereco;
     private static Pessoa pessoaLogada;
 
-    public Pessoa(){}
+    public Pessoa() {
+    }
 
     public Pessoa(String login, String senha, String nome, String telefone, String email, String endereco) {
         this.login = login;
@@ -113,11 +114,13 @@ public abstract class Pessoa {
     }
 
     public void setTelefone(String telefone) {
-        /*if (Validacao.validarTelefone(telefone)) {
-            this.telefone = telefone;
-        } else {
-            throw new IllegalArgumentException("Telefone inválido.");
-        }*/
+        /*
+         * if (Validacao.validarTelefone(telefone)) {
+         * this.telefone = telefone;
+         * } else {
+         * throw new IllegalArgumentException("Telefone inválido.");
+         * }
+         */
         this.telefone = telefone;
     }
 
@@ -129,7 +132,8 @@ public abstract class Pessoa {
         if (Validacao.validarEmail(email)) {
             this.email = email;
         } else {
-            throw new IllegalArgumentException("E-mail inválido.");
+            System.out.println("Aviso: E-mail inválido para o cliente " + this.nome + ". Ignorando campo.\n");
+            this.email = "email_invalido@exemplo.com";
         }
     }
 
@@ -157,5 +161,6 @@ public abstract class Pessoa {
         sb.append(", endereco=").append(endereco);
         sb.append('}');
         return sb.toString();
-}
+    }
+
 }
