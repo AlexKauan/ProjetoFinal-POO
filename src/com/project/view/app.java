@@ -105,7 +105,7 @@ public class App {
         System.out.print("Senha: ");
         String senha = sc.nextLine();
 
-        // Usar PessoaController para validar login
+        // Usa PessoaController para validar login
         Pessoa pessoaLogada = PessoaController.logarPessoa(login, senha);
 
         if (pessoaLogada != null) {
@@ -166,10 +166,8 @@ public class App {
         int numeroDeVendas = sc.nextInt();
         sc.nextLine(); // Limpar o buffer
 
-        // Criar o objeto Vendedor com o construtor adequado
         Vendedor vendedor = new Vendedor(salario, numeroDeVendas, 0, login, senha, nome, telefone, email, endereco);
 
-        // Usar o VendedorController para cadastrar o novo vendedor
         VendedorController.cadastrarVendedor(vendedor);
 
         System.out.println("Vendedor cadastrado com sucesso!");

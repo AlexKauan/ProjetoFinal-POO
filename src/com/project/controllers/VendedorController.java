@@ -108,7 +108,7 @@ public class VendedorController {
     // Método para cadastrar um novo vendedor
     public static void cadastrarVendedor(Vendedor vendedor) {
         try {
-            VendedorDao.salvar(vendedor); // Supondo que o método de salvar já existe em VendedorDao
+            VendedorDao.salvar(vendedor);
             System.out.println("Vendedor cadastrado com sucesso!");
         } catch (SQLException e) {
             System.out.println("Erro ao cadastrar o vendedor: " + e.getMessage());
