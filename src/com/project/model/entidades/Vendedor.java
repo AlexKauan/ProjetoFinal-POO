@@ -20,7 +20,7 @@ public class Vendedor extends Pessoa {
     }
 
     public Vendedor(double salario, int numeroDeVendas, double totalVendido, String login, String senha,
-        String nome,String telefone, String email, String endereco) {
+            String nome, String telefone, String email, String endereco) {
         super(login, senha, nome, telefone, email, endereco);
         this.salario = salario;
         this.numeroDeVendas = numeroDeVendas;
@@ -95,7 +95,5 @@ public class Vendedor extends Pessoa {
                 ", totalVendido=" + totalVendido +
                 '}';
     }
-
-    
 
 }

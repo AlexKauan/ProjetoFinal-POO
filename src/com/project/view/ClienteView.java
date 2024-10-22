@@ -11,174 +11,131 @@ public class ClienteView {
     public static void chamarMenuCliente() {
         int opcao = -1;
 
-        int menu = -1;
-        String nome = "";
-        String telefone = "";
-        String email = "";
-        String endereco = "";
-        String login = "";
-        String senha = "";
-        int numeroDeCompras = 0;
-        double totalComprado = 0.0;
         while (opcao != 0) {
+            System.out.println("\n============ Menu do Cliente ============\n");
+            System.out.println("1 - Cadastrar Cliente");
+            System.out.println("2 - Editar Cliente");
+            System.out.println("3 - Mostrar Cliente");
+            System.out.println("4 - Listar todos os Clientes");
+            System.out.println("5 - Excluir Cliente");
+            System.out.println("0 - Voltar");
+            System.out.println("=========================================\n");
 
-            System.out.println("\n    Escolha uma opção de Cliente     ");
-            System.out.println("=======================================");
-            System.out.println("   1 - Cadastrar Cliente                ");
-            System.out.println("   2 - Editar Cliente                   ");
-            System.out.println("   3 - Mostra Cliente                   ");
-            System.out.println("   4 - Listar todos os Clientes         ");
-            System.out.println("   5 - Excluir Cliente                  ");
-            System.out.println("   0 - Sair                             ");
-            System.out.println("=======================================");
-
-            System.out.print("Opcao ");
-            opcao = sc.nextInt();
+            opcao = obterInteiroDoUsuario("Opção: ");
 
             switch (opcao) {
                 case 1:
-                    System.out.print("Informe o login ");
-                    login = sc.nextLine();
-                    sc.nextLine(); // Limpa o buffer do scanner
-                    System.out.print("Informe o Senha ");
-                    senha = sc.nextLine();
-                    System.out.print("Informe o nome do cliente ");
-                    nome = sc.nextLine();
-                    System.out.print("Informe o telefone ");
-                    telefone = sc.nextLine();
-                    System.out.print("Informe o Email ");
-                    email = sc.nextLine();
-                    System.out.print("Informe o endereço ");
-                    endereco = sc.nextLine();
-                    System.out.print("Informe o numero da compra ");
-                    numeroDeCompras = sc.nextInt();
-                    System.out.print("Informe o Total Comprado ");
-                    totalComprado = sc.nextDouble();
-                    sc.nextLine(); // Limpa o buffer do scanner
-                    ClienteController.cadastraCliente(login, senha, nome, telefone, email, endereco, numeroDeCompras,
-                            totalComprado);
+                    cadastrarCliente();
                     break;
                 case 2:
-                    /* Editar Cliente */
-                    int idClienteEditar = 0;
-                    System.out.print("Informe o ID do cliente: ");
-                    idClienteEditar = sc.nextInt();
-                    Cliente cliente = ClienteController.buscarCliente(idClienteEditar);
-                    if (cliente == null) {
-                        System.out.println("Não é possível editar um cliente que não existe\n");
-                        break;
-                    }
-
-                    login = null;
-                    senha = null;
-                    nome = null;
-                    telefone = null;
-                    email = null;
-                    endereco = null;
-
-                    System.out.println("            Menu Cliente");
-                    System.out.println("=======================================");
-                    System.out.println("   1 - Editar Todos");
-                    System.out.println("   2 - Editar Nome");
-                    System.out.println("   3 - Editar Senha");
-                    System.out.println("   4 - Editar Login");
-                    System.out.println("   5 - Editar Telefone");
-                    System.out.println("   6 - Editar Email");
-                    System.out.println("   7 - Editar Endereço");
-                    System.out.println("   0 - Sair");
-                    System.out.println("=======================================");
-                    int opcao1 = sc.nextInt();
-                    sc.nextLine();
-
-                    boolean editarTodosOsCampos = false;
-
-                    switch (opcao1) {
-                        case 1:
-                            editarTodosOsCampos = true;
-
-                        case 2:
-                            System.out.print("Digite o novo nome do Cliente ");
-                            nome = sc.nextLine();
-                            if (!editarTodosOsCampos) {
-                                break;
-                            }
-
-                        case 3:
-                            System.out.print("Digite o novo nome da Senha ");
-                            senha = sc.nextLine();
-                            if (!editarTodosOsCampos) {
-                                break;
-                            }
-
-                        case 4:
-                            System.out.print("Digite o novo Login ");
-                            login = sc.nextLine();
-                            if (!editarTodosOsCampos) {
-                                break;
-                            }
-
-                        case 5:
-                            System.out.print("Digite o Novo Telefone ");
-                            telefone = sc.nextLine();
-                            if (!editarTodosOsCampos) {
-                                break;
-                            }
-
-                        case 6:
-                            System.out.print("Digite o novo Email ");
-                            email = sc.nextLine();
-                            if (!editarTodosOsCampos) {
-                                break;
-                            }
-
-                        case 7:
-                            System.out.print("Digite o Novo Endereço ");
-                            endereco = sc.nextLine();
-                            if (!editarTodosOsCampos) {
-                                break;
-                            }
-
-                        case 0:
-                            System.out.println("Sair");
-                            break;
-
-                        default:
-                            System.out.println("Opção Invalida");
-                            break;
-                    }
-                    ClienteController.atualizarCliente(idClienteEditar, login, senha, nome, telefone, email, endereco,
-                            numeroDeCompras,
-                            totalComprado);
+                    editarCliente();
                     break;
-
                 case 3:
-                    /* Visualizar Cliente */
-                    int idClienteMostra = 0;
-                    System.out.print("Informe o ID do Cliente: ");
-                    idClienteMostra = sc.nextInt();
-
-                    ClienteController.mostrarCliente(idClienteMostra);
+                    mostrarCliente();
                     break;
-
                 case 4:
-                    /* Listar todos os Clientes */
-                    System.out.println("\nCLientes no sistema:\n");
-                    ClienteController.listarClientes();
+                    listarClientes();
                     break;
-
                 case 5:
-                    /* Excluir Cliente */
-                    int idClienteExcluir = 0;
-                    System.out.print("Informe o ID do Cliente:\n");
-                    idClienteExcluir = sc.nextInt();
-                    ClienteController.removerCliente(idClienteExcluir);
+                    excluirCliente();
                     break;
-
                 case 0:
-                    System.out.println("Sair");
+                    System.out.println("Voltando ao menu principal...");
                     break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
 
+    private static void cadastrarCliente() {
+        System.out.println("\n========== Cadastro de Cliente ==========");
+        String login = obterStringDoUsuario("Login: ");
+        String senha = obterStringDoUsuario("Senha: ");
+        String nome = obterStringDoUsuario("Nome: ");
+        String telefone = obterStringDoUsuario("Telefone: ");
+        String email = obterStringDoUsuario("Email: ");
+        String endereco = obterStringDoUsuario("Endereço: ");
+
+        // Cria um objeto Cliente com os dados fornecidos
+        Cliente cliente = new Cliente(login, senha, nome, telefone, email, endereco, 0, 0.0);
+
+        // Chama o método do controlador passando o objeto Cliente
+        try {
+            ClienteController.cadastraCliente(cliente);
+            System.out.println("Cliente cadastrado com sucesso!");
+        } catch (Exception e) {
+            System.out.println("Erro ao cadastrar o cliente: " + e.getMessage());
+        }
+    }
+
+    private static void editarCliente() {
+        System.out.println("\n========== Edição de Cliente ==========");
+        int idCliente = obterInteiroDoUsuario("Informe o ID do Cliente a ser editado: ");
+        Cliente cliente = ClienteController.buscarCliente(idCliente);
+
+        if (cliente == null) {
+            System.out.println("Cliente não encontrado.");
+            return;
+        }
+
+        String nome = obterStringDoUsuario("Novo Nome (pressione Enter para manter o atual): ", cliente.getNome());
+        String telefone = obterStringDoUsuario("Novo Telefone (pressione Enter para manter o atual): ",
+                cliente.getTelefone());
+        String email = obterStringDoUsuario("Novo Email (pressione Enter para manter o atual): ", cliente.getEmail());
+        String endereco = obterStringDoUsuario("Novo Endereço (pressione Enter para manter o atual): ",
+                cliente.getEndereco());
+
+        ClienteController.atualizarCliente(idCliente, cliente.getLogin(), cliente.getSenha(), nome, telefone, email,
+                endereco, cliente.getNumeroDeCompras(), cliente.getTotalComprado());
+        System.out.println("Cliente atualizado com sucesso!");
+    }
+
+    private static void mostrarCliente() {
+        int idCliente = obterInteiroDoUsuario("Informe o ID do Cliente: ");
+        ClienteController.mostrarCliente(idCliente);
+    }
+
+    private static void listarClientes() {
+        System.out.println("\n========== Lista de Clientes ==========");
+        ClienteController.listarClientes();
+    }
+
+    private static void excluirCliente() {
+        int idCliente = obterInteiroDoUsuario("Informe o ID do Cliente a ser excluído: ");
+        ClienteController.removerCliente(idCliente);
+    }
+
+    private static String obterStringDoUsuario(String mensagem) {
+        System.out.print(mensagem);
+        return sc.nextLine();
+    }
+
+    private static String obterStringDoUsuario(String mensagem, String valorAtual) {
+        System.out.print(mensagem);
+        String valor = sc.nextLine();
+        return valor.isEmpty() ? valorAtual : valor;
+    }
+
+    private static int obterInteiroDoUsuario(String mensagem) {
+        System.out.print(mensagem);
+        while (!sc.hasNextInt()) {
+            System.out.println("Entrada inválida. Digite um número inteiro.");
+            sc.next();
+        }
+        int valor = sc.nextInt();
+        sc.nextLine(); // Limpar buffer após uso de nextInt()
+        return valor;
+    }
+
+    private static double obterDoubleDoUsuario(String mensagem) {
+        System.out.print(mensagem);
+        while (!sc.hasNextDouble()) {
+            System.out.println("Entrada inválida. Digite um valor numérico.");
+            sc.next();
+        }
+        double valor = sc.nextDouble();
+        sc.nextLine(); // Limpar buffer após uso de nextDouble()
+        return valor;
+    }
 }

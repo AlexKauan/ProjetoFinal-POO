@@ -1,4 +1,4 @@
-package com.project.model.DAO;
+package com.project.model.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import com.project.model.entidades.Cliente;
 
-public class ClienteDAO {
+public class ClienteDao {
 
     public static Connection conn;
 
@@ -67,7 +67,6 @@ public class ClienteDAO {
 
     public static int inserir(Cliente cliente) throws SQLException {
         String sql = "INSERT INTO cliente (login, senha, nome, telefone, email, endereco, numero_de_compras, totalComprado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, cliente.getLogin());
         ps.setString(2, cliente.getSenha());
@@ -77,6 +76,7 @@ public class ClienteDAO {
         ps.setString(6, cliente.getEndereco());
         ps.setInt(7, cliente.getNumeroDeCompras());
         ps.setDouble(8, cliente.getTotalComprado());
+
         int resultado = ps.executeUpdate();
         BancoDeDados.fecharPreparedStatement(ps);
         return resultado;
@@ -143,12 +143,14 @@ public class ClienteDAO {
     }
 
     public static Cliente pegar_por_login(String login) throws SQLException {
+        System.out.println("Tentando buscar cliente com login: " + login);
+
         Cliente cliente = null;
-        String sql = "SELECT id_cliente, login, senha, nome, telefone, email, endereco, numero_de_compras, totalComprado from cliente where login = ?";
+        String sql = "SELECT * FROM cliente WHERE login = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, login);
-
         ResultSet rs = ps.executeQuery();
+
         if (rs.next()) {
             cliente = new Cliente();
             cliente.setId(rs.getInt("id_cliente"));
@@ -160,9 +162,14 @@ public class ClienteDAO {
             cliente.setEndereco(rs.getString("endereco"));
             cliente.setNumeroDeCompras(rs.getInt("numero_de_compras"));
             cliente.setTotalComprado(rs.getDouble("totalComprado"));
+        } else {
+            System.out.println("Nenhum cliente encontrado com o login: " + login);
         }
+
         BancoDeDados.fecharResultSet(rs);
         BancoDeDados.fecharPreparedStatement(ps);
+
         return cliente;
     }
+
 }

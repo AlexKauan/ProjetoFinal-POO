@@ -1,9 +1,7 @@
 package com.project.view;
 
-import java.util.Scanner;
-
-import com.project.model.entidades.ItemDeCompra;
 import com.project.model.entidades.Produto;
+import java.util.Scanner;
 
 public class ItemDeCompraView {
 
@@ -29,10 +27,9 @@ public class ItemDeCompraView {
 
             switch (opcao) {
                 case 1:
-                    
-                    
+
                     break;
-            
+
                 default:
                     break;
             }

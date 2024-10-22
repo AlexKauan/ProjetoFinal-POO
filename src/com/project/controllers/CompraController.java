@@ -1,6 +1,6 @@
 package com.project.controllers;
 
-import com.project.model.DAO.CompraDAO;
+import com.project.model.dao.CompraDao;
 import com.project.model.entidades.Cliente;
 import com.project.model.entidades.Compra;
 import com.project.view.CompraView;
@@ -21,7 +21,7 @@ public class CompraController {
         Cliente cliente = ClienteController.buscarCliente(idCliente);
         Compra compra = new Compra(cliente, date, statusCompra);
         try {
-            CompraDAO.salvar(compra);
+            CompraDao.salvar(compra);
             System.out.println("\nCompra cadastrado com sucesso\n");
         } catch (SQLException e) {
             System.out.println("Erro ao criar o Compra");
@@ -31,7 +31,7 @@ public class CompraController {
     public static void mostrarCompra(int idCompra) {
         Compra compra;
         try {
-            compra = CompraDAO.pegar(idCompra);
+            compra = CompraDao.pegar(idCompra);
             if (compra == null) {
                 System.out.println("Esse compra não existe\n");
             } else {
@@ -45,7 +45,7 @@ public class CompraController {
 
     public static void listarCompras() {
         try {
-            ArrayList<Compra> compras = CompraDAO.pegarTodos();
+            ArrayList<Compra> compras = CompraDao.pegarTodos();
             if (compras.size() == 0) {
                 System.out.println("\nNão há pedidos para lsitar\n");
                 return;
@@ -66,12 +66,12 @@ public class CompraController {
 
     public static void removerCompra(int idcompra) {
         try {
-            Compra compra = CompraDAO.pegar(idcompra);
+            Compra compra = CompraDao.pegar(idcompra);
             if (compra == null) {
                 System.out.println("\nEsse pedido não está no sistema\n");
                 return;
             }
-            CompraDAO.deletar(compra);
+            CompraDao.deletar(compra);
             System.out.println("\nPedido deletado com sucesso");
         } catch (SQLException e) {
             System.out.println("Erro ao deletar o pedido");
@@ -99,7 +99,7 @@ public class CompraController {
 
     public void salvar() {
         try {
-            CompraDAO.salvar(this.compra);
+            CompraDao.salvar(this.compra);
             System.out.println("COmpra Salvo Com sucesso!!!");
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -110,7 +110,7 @@ public class CompraController {
 
     public void deletar() {
         try {
-            CompraDAO.deletar(this.compra);
+            CompraDao.deletar(this.compra);
             System.out.println("Cliente Deletado Com sucesso!!!");
         } catch (SQLException e) {
             // TODO Auto-generated catch block

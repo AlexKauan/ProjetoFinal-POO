@@ -1,4 +1,4 @@
-package com.project.model.DAO;
+package com.project.model.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import com.project.model.entidades.Cliente;
 import com.project.model.entidades.Compra;
 
-public class CompraDAO{
+public class CompraDao {
 
     public static Connection conn;
 
@@ -19,17 +19,17 @@ public class CompraDAO{
         String sql = "SELECT id_compra, id_cliente, data, statusCompra from compra where id_compra = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, id);
-        
+
         ResultSet rs = ps.executeQuery();
         Cliente cliente = null;
         if (rs.next()) {
             compra = new Compra();
-            cliente = ClienteDAO.pegar(rs.getInt("id_cliente"));
+            cliente = ClienteDao.pegar(rs.getInt("id_cliente"));
             compra.setCliente(cliente);
-            compra.setIdCompra(rs.getInt("id_compra"));   
+            compra.setIdCompra(rs.getInt("id_compra"));
             compra.setDate(rs.getString("data"));
-            compra.setStatusCompra(rs.getString("statusCompra"));     
-            
+            compra.setStatusCompra(rs.getString("statusCompra"));
+
         }
         BancoDeDados.fecharResultSet(rs);
         BancoDeDados.fecharPreparedStatement(ps);
@@ -41,16 +41,16 @@ public class CompraDAO{
         Compra compra = null;
         String sql = "SELECT id_compra, id_cliente, data, statusCompra from compra";
         PreparedStatement ps = conn.prepareStatement(sql);
-        
+
         ResultSet rs = ps.executeQuery();
         Cliente cliente = null;
         while (rs.next()) {
             compra = new Compra();
-            cliente = ClienteDAO.pegar(rs.getInt("id_cliente"));
+            cliente = ClienteDao.pegar(rs.getInt("id_cliente"));
             compra.setCliente(cliente);
-            compra.setIdCompra(rs.getInt("id_compra"));  
+            compra.setIdCompra(rs.getInt("id_compra"));
             compra.setDate(rs.getString("data"));
-            compra.setStatusCompra(rs.getString("statusCompra"));     
+            compra.setStatusCompra(rs.getString("statusCompra"));
             compras.add(compra);
         }
         BancoDeDados.fecharResultSet(rs);
@@ -71,7 +71,7 @@ public class CompraDAO{
         return resultado;
     }
 
-      public static void get_id_compra(Compra compra) throws SQLException{
+    public static void get_id_compra(Compra compra) throws SQLException {
         String sql = "SELECT id_compra from compra WHERE id_cliente = ? and data = ? and statusCompra = ?";
         Cliente cliente = compra.getCliente();
 
@@ -105,11 +105,11 @@ public class CompraDAO{
     public static void salvar(Compra compra) throws SQLException {
         if (compra.getIdCompra() != 0)
             atualizar(compra);
-        else{
+        else {
             inserir(compra);
             get_id_compra(compra);
         }
-            
+
     }
 
     public static int deletar(Compra compra) throws SQLException {
