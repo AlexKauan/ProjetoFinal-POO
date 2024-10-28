@@ -9,7 +9,6 @@ public class VendedorController {
     private Vendedor vendedor;
     private VendedorView vendedorView;
 
-    // Construtor
     public VendedorController(Vendedor vendedor, VendedorView vendedorView) {
         this.vendedor = vendedor;
         this.vendedorView = vendedorView;
@@ -105,7 +104,6 @@ public class VendedorController {
         this.vendedorView = vendedorView;
     }
 
-    // Método para cadastrar um novo vendedor
     public static void cadastrarVendedor(Vendedor vendedor) {
         try {
             VendedorDao.salvar(vendedor);

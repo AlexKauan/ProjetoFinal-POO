@@ -10,7 +10,6 @@ public class ItemDeCompraController {
     private ItemDeCompra itemDeCompra;
     private ItemDeCompraView itemDeCompraView;
 
-    // Construtor
     public ItemDeCompraController(ItemDeCompra itemDeCompra, ItemDeCompraView itemDeCompraView) {
         this.itemDeCompra = itemDeCompra;
         this.itemDeCompraView = itemDeCompraView;
@@ -32,7 +31,6 @@ public class ItemDeCompraController {
             ItemDeCompraDao.salvar(this.itemDeCompra);
             System.out.println("Cliente Salvo Com sucesso!!!");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             System.out.println("Cliente Não Salvo!!!");
         }
@@ -43,13 +41,11 @@ public class ItemDeCompraController {
             ItemDeCompraDao.deletar(this.itemDeCompra);
             System.out.println("Cliente Deletado Com sucesso!!!");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             System.out.println("Cliente Não Deletado!!!");
         }
     }
 
-    // Getters e Setters para ItemDecompra e ItemDecompraView, caso seja necessário
     public ItemDeCompra getItemDeCompra() {
         return itemDeCompra;
     }

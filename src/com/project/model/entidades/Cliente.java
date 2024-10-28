@@ -31,7 +31,7 @@ public class Cliente extends Pessoa {
             String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
         return new Cliente(login, senha, nome, telefone, email, endereco, numeroDeCompras, totalComprado);
     }
-
+ 
     public void editarPessoa(String login, String senha, String nome,
             String telefone, String email, String endereco, int numeroDeCompras, double totalComprado) {
         if (nome != null) {

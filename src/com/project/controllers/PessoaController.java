@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 public class PessoaController {
 
-    // Método para logar tanto clientes quanto vendedores
     public static Pessoa logarPessoa(String login, String senha) {
         try {
             Cliente cliente = ClienteDao.pegar_por_login(login);

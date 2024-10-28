@@ -9,9 +9,9 @@ import java.sql.Statement;
 
 public class BancoDeDados {
     private static String driver = "org.postgresql.Driver";
-    private static String url = "jdbc:postgresql://localhost:5432/postgres";
+    private static String url = "jdbc:postgresql://localhost:5432/Epoo";
     private static String user = "postgres";
-    private static String password = "1364";
+    private static String password = "postgres";
 
     private static Connection conn;
 

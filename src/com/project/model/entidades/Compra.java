@@ -45,7 +45,6 @@ public class Compra {
         }
     }
 
-    // Getters e Setters
     public int getIdCompra() {
         return idCompra;
     }

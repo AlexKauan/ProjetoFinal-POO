@@ -15,10 +15,10 @@ import java.util.Scanner;
 public class CompraView {
 
     public static void chamarMenuCompra() throws SQLException {
-        int opcao = -1; // Inicializa a variável opcao com -1 para entrar no loop
+        int opcao = -1;
         Scanner sc = new Scanner(System.in);
 
-        while (opcao != 0) { // Mantém o loop até que a opção 0 seja escolhida
+        while (opcao != 0) { 
             System.out.println("\n============ Menu de Compras ============\n");
             System.out.println("1 - Cadastrar Compra");
             System.out.println("2 - Mostrar Compra");
@@ -44,7 +44,7 @@ public class CompraView {
                     break;
                 case 0:
                     System.out.println("Voltando ao menu principal...");
-                    break; // Sai do loop e volta ao menu principal
+                    break; 
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
                     break;
@@ -104,7 +104,7 @@ public class CompraView {
             sc.next();
         }
         int valor = sc.nextInt();
-        sc.nextLine(); // Limpar o buffer
+        sc.nextLine();
         return valor;
     }
 }

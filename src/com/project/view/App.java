@@ -18,29 +18,24 @@ public class App {
 
         int opcao = -1;
         while (opcao != 0) {
-            // Exibe o menu inicial para escolher o tipo de usuário
             exibirMenuInicial();
             opcao = obterOpcaoDoUsuario(sc, "Opção: ");
 
             switch (opcao) {
                 case 1:
-                    // Login de Cliente
                     if (login(sc, "Cliente")) {
                         exibirMenuPrincipal("Cliente", sc);
                     }
                     break;
                 case 2:
-                    // Login de Vendedor
                     if (login(sc, "Vendedor")) {
                         exibirMenuPrincipal("Vendedor", sc);
                     }
                     break;
                 case 3:
-                    // Cadastro de Cliente
                     cadastrarCliente(sc);
                     break;
                 case 4:
-                    // Cadastro de Vendedor
                     cadastrarVendedor(sc);
                     break;
                 case 0:
@@ -53,7 +48,6 @@ public class App {
         sc.close();
     }
 
-    // Método para exibir o menu inicial de escolha do tipo de login
     private static void exibirMenuInicial() {
         System.out.println("\n========== Escolha o Tipo de Login ou Cadastro ============\n");
         System.out.println("1 - Logar como Cliente");
@@ -64,7 +58,6 @@ public class App {
         System.out.println("==========================================================");
     }
 
-    // Método para exibir o menu principal com base no tipo de usuário logado
     private static void exibirMenuPrincipal(String tipoUsuario, Scanner sc) {
         int opcao = 0;
         do {
@@ -97,7 +90,6 @@ public class App {
         } while (opcao != 0);
     }
 
-    // Função de login para cliente ou vendedor
     private static boolean login(Scanner sc, String tipoUsuario) {
         System.out.println("========== Login " + tipoUsuario + " ===========");
         System.out.print("Login: ");
@@ -105,7 +97,6 @@ public class App {
         System.out.print("Senha: ");
         String senha = sc.nextLine();
 
-        // Usa PessoaController para validar login
         Pessoa pessoaLogada = PessoaController.logarPessoa(login, senha);
 
         if (pessoaLogada != null) {
@@ -117,7 +108,6 @@ public class App {
         }
     }
 
-    // Método para cadastrar um novo cliente
     private static void cadastrarCliente(Scanner sc) {
         System.out.println("\n========== Cadastro de Cliente ===========");
         System.out.print("Login: ");
@@ -132,7 +122,7 @@ public class App {
         String email = sc.nextLine();
         System.out.print("Endereço: ");
         String endereco = sc.nextLine();
-        int numeroDeCompras = 0; // Inicialize com valores padrão
+        int numeroDeCompras = 0;
         double totalComprado = 0.0;
 
         Cliente cliente = new Cliente(login, senha, nome, telefone, email, endereco, numeroDeCompras, totalComprado);
@@ -145,7 +135,6 @@ public class App {
         }
     }
 
-    // Método para cadastrar um novo vendedor
     private static void cadastrarVendedor(Scanner sc) {
         System.out.println("\n========== Cadastro de Vendedor ===========");
         System.out.print("Login: ");
@@ -164,7 +153,7 @@ public class App {
         double salario = sc.nextDouble();
         System.out.print("Número de Vendas: ");
         int numeroDeVendas = sc.nextInt();
-        sc.nextLine(); // Limpar o buffer
+        sc.nextLine(); 
 
         Vendedor vendedor = new Vendedor(salario, numeroDeVendas, 0, login, senha, nome, telefone, email, endereco);
 
@@ -173,7 +162,6 @@ public class App {
         System.out.println("Vendedor cadastrado com sucesso!");
     }
 
-    // Método para capturar a opção do usuário
     private static int obterOpcaoDoUsuario(Scanner sc, String mensagem) {
         System.out.print(mensagem);
         String input = sc.nextLine();
@@ -181,7 +169,7 @@ public class App {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             System.out.println("Entrada inválida. Por favor, insira um número.");
-            return -1; // Retorna -1 para capturar a opção inválida e exibir o menu novamente
+            return -1; 
         }
     }
 }

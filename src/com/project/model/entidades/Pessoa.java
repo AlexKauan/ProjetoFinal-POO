@@ -36,8 +36,6 @@ public abstract class Pessoa {
         this.endereco = endereco;
     }
 
-    // Métodos abstratos
-
     public void mostrarPessoa() {
         System.out.println(this.toString());
     }
@@ -65,7 +63,7 @@ public abstract class Pessoa {
     }
 
     public void removerPessoa(List<Pessoa> pessoas) {
-        pessoas.remove(this); // Remove esta pessoa da lista de pessoas
+        pessoas.remove(this);
     }
 
     public boolean logarPessoa(String login, String senha) {
@@ -76,7 +74,6 @@ public abstract class Pessoa {
         return false;
     }
 
-    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -114,13 +111,6 @@ public abstract class Pessoa {
     }
 
     public void setTelefone(String telefone) {
-        /*
-         * if (Validacao.validarTelefone(telefone)) {
-         * this.telefone = telefone;
-         * } else {
-         * throw new IllegalArgumentException("Telefone inválido.");
-         * }
-         */
         this.telefone = telefone;
     }
 

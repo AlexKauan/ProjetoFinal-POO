@@ -4,7 +4,6 @@ import com.project.model.entidades.Produto;
 
 public class ProdutoView {
 
-    // Método para exibir as informações do Produto
     public void printInformacoes(Produto produto) {
         if (produto == null) {
             System.out.println("Nenhuma informação de produto disponível.");

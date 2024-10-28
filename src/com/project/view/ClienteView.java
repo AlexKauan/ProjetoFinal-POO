@@ -57,10 +57,8 @@ public class ClienteView {
         String email = obterStringDoUsuario("Email: ");
         String endereco = obterStringDoUsuario("Endereço: ");
 
-        // Cria um objeto Cliente com os dados fornecidos
         Cliente cliente = new Cliente(login, senha, nome, telefone, email, endereco, 0, 0.0);
 
-        // Chama o método do controlador passando o objeto Cliente
         try {
             ClienteController.cadastraCliente(cliente);
             System.out.println("Cliente cadastrado com sucesso!");
@@ -124,7 +122,7 @@ public class ClienteView {
             sc.next();
         }
         int valor = sc.nextInt();
-        sc.nextLine(); // Limpar buffer após uso de nextInt()
+        sc.nextLine();
         return valor;
     }
 
@@ -135,7 +133,7 @@ public class ClienteView {
             sc.next();
         }
         double valor = sc.nextDouble();
-        sc.nextLine(); // Limpar buffer após uso de nextDouble()
+        sc.nextLine();
         return valor;
     }
 }

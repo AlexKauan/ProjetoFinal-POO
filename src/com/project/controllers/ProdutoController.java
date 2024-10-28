@@ -7,7 +7,6 @@ import java.util.List;
 public class ProdutoController {
     private List<Produto> produtos;
 
-    // Construtor
     public ProdutoController() {
         this.produtos = new ArrayList<>();
     }

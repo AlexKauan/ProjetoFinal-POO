@@ -4,7 +4,6 @@ import com.project.model.entidades.Vendedor;
 
 public class VendedorView {
 
-    // Método para exibir as informações do Vendedor
     public void printInformacoes(Vendedor vendedor) {
         if (vendedor == null) {
             System.out.println("Nenhuma informação de vendedor disponível.");

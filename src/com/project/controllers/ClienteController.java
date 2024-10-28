@@ -10,7 +10,6 @@ public class ClienteController {
     private Cliente cliente;
     private ClienteView clienteView;
 
-    // Construtor
     public ClienteController(Cliente cliente, ClienteView clienteView) {
         this.cliente = cliente;
         this.clienteView = clienteView;
@@ -24,19 +23,15 @@ public class ClienteController {
         return cliente.getNumeroDeCompras();
     }
 
-    // Cadastro de Cliente
     public static void cadastraCliente(Cliente cliente) throws SQLException {
         try {
-            ClienteDao.salvar(cliente); // Método que realiza a inserção no banco de dados
-            // System.out.println("\nCliente cadastrado com sucesso\n");
+            ClienteDao.salvar(cliente);
         } catch (SQLException e) {
             e.printStackTrace();
-            // System.out.println("Erro ao criar o Cliente: " + e.getMessage());
-            throw e; // Lança exceção para ser tratada no App
+            throw e;
         }
     }
 
-    // Atualização de Cliente
     public static void atualizarCliente(int idCliente, String login, String senha, String nome, String telefone,
             String email, String endereco, int numeroDeCompras, double totalComprado) {
         try {
@@ -53,7 +48,6 @@ public class ClienteController {
         }
     }
 
-    // Mostrar Cliente
     public static void mostrarCliente(int idCliente) {
         try {
             Cliente cliente = ClienteDao.pegar(idCliente);
@@ -70,7 +64,6 @@ public class ClienteController {
 
     public static Cliente buscarCliente(int idCliente) {
         try {
-            // Usa o DAO para buscar o cliente pelo ID no banco de dados
             return ClienteDao.pegar(idCliente);
         } catch (SQLException e) {
             System.out.println("Erro ao buscar cliente: " + e.getMessage());
@@ -78,8 +71,7 @@ public class ClienteController {
         }
     }
 
-    // Listar Clientes
-    public static void listarClientes() {
+    public static void listarClientes() { 
         try {
             ArrayList<Cliente> clientes = ClienteDao.pegarTodos();
             if (clientes.isEmpty()) {
@@ -94,7 +86,6 @@ public class ClienteController {
         }
     }
 
-    // Remover Cliente
     public static void removerCliente(int idCliente) {
         try {
             Cliente cliente = ClienteDao.pegar(idCliente);

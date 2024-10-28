@@ -11,7 +11,6 @@ public class CompraController {
     private Compra compra;
     private CompraView compraView;
 
-    // Construtor
     public CompraController(Compra compra, CompraView compraView) {
         this.compra = compra;
         this.compraView = compraView;
@@ -102,7 +101,6 @@ public class CompraController {
             CompraDao.salvar(this.compra);
             System.out.println("COmpra Salvo Com sucesso!!!");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             System.out.println("Compra Não Salvo!!!");
         }
@@ -113,7 +111,6 @@ public class CompraController {
             CompraDao.deletar(this.compra);
             System.out.println("Cliente Deletado Com sucesso!!!");
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             System.out.println("Cliente Não Deletado!!!");
         }
