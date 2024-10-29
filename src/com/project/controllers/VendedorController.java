@@ -20,7 +20,7 @@ public class VendedorController {
         vendedor.editarPessoa(nome, telefone, endereco, senha);
     }
 
-    public void listarVendedor(List<Vendedor> vendedores) {
+    public void listarVendedor(List< Vendedor> vendedores) {
         if (vendedores.isEmpty()){
             System.out.println("Não tem vendedores");
         } else {

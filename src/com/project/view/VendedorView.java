@@ -66,7 +66,7 @@ public class VendedorView {
                 case 3:
                     /* Visualizar Vendedor */
                     int idVededorMostra = 0;
-                    System.out.print("Informe o ID do Cliente: ");
+                    System.out.print("Informe o ID  do Cliente: ");
                     idVededorMostra = sc.nextInt();
 
                     VendedorController.mostrarVendedor(idVededorMostra);
