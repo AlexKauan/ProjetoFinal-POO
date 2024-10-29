@@ -74,7 +74,7 @@ public class ItemDeCompraDao {
     }
 
     public static void get_id_Itm_compra(ItemDeCompra item) throws SQLException {
-        String sql = "SELECT id_Item_Compra from itemDeCompra WHERE id_compra = ? and id_produto = ? quantidadeComprada = ? and precoDoItemDeCompra = ?";
+        String sql = "SELECT id_Item_Compra from itemDeCompra WHERE id_compra = ? and id_produto = ? and quantidadeComprada = ? and precoDoItemDeCompra = ?";
 
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, item.getProduto().getIdProduto());

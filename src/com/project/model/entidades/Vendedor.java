@@ -1,7 +1,5 @@
 package com.project.model.entidades;
 
-import java.util.List;
-
 public class Vendedor extends Pessoa {
     private double salario;
     private int numeroDeVendas;
@@ -27,6 +25,10 @@ public class Vendedor extends Pessoa {
         this.totalVendido = totalVendido;
     }
 
+    public void mostrarVendedor(Vendedor vendedor) {
+        System.out.println(this.toString());
+    }
+
     public double getSalario() {
         return salario;
     }
@@ -49,36 +51,6 @@ public class Vendedor extends Pessoa {
 
     public void setTotalVendido(double totalVendido) {
         this.totalVendido = totalVendido;
-    }
-
-    public void mostrarVendedor() {
-        System.out.println(this.toString());
-    }
-
-    public void editarVendedor(String nome, String endereco, String telefone, String senha) {
-        super.editarPessoa(nome, telefone, endereco, senha);
-    }
-
-    public void listarVendedor(List<Vendedor> vendedores) {
-        for (Vendedor vendedor : vendedores) {
-            vendedor.mostrarPessoa();
-        }
-    }
-
-    public void removerVendedor(List<Vendedor> vendedores) {
-        vendedores.remove(this);
-    }
-
-    public boolean logarVendedor(String login, String senha) {
-        return super.logarPessoa(login, senha);
-    }
-
-    public int calcularNumeroDeVendas() {
-        return numeroDeVendas;
-    }
-
-    public double calcularTotalVendido() {
-        return totalVendido;
     }
 
     @Override
